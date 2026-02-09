@@ -90,21 +90,23 @@ body.user-template-scope::before {
     pointer-events: none;
     z-index: 0;
     background:
-        radial-gradient(140% 120% at 12% 90%, rgba(25, 210, 138, 0.42) 0%, rgba(25, 210, 138, 0.0) 56%),
-        radial-gradient(110% 90% at 86% 88%, rgba(74, 255, 190, 0.33) 0%, rgba(74, 255, 190, 0.0) 54%),
-        radial-gradient(120% 100% at 42% 12%, rgba(198, 84, 255, 0.36) 0%, rgba(198, 84, 255, 0.0) 52%),
-        linear-gradient(167deg, rgba(189, 73, 255, 0.44) 8%, rgba(189, 73, 255, 0.0) 38%),
-        linear-gradient(193deg, rgba(38, 233, 166, 0.33) 12%, rgba(38, 233, 166, 0.0) 42%),
-        radial-gradient(120% 130% at 50% -20%, rgba(45, 87, 255, 0.24) 0%, rgba(45, 87, 255, 0.0) 66%),
-        linear-gradient(180deg, #060b15 0%, #090f1f 45%, #070d19 100%);
+        radial-gradient(200% 140% at 6% 6%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 36%),
+        linear-gradient(171deg, rgba(221, 84, 255, 0.58) 16%, rgba(221, 84, 255, 0.0) 56%),
+        linear-gradient(178deg, rgba(170, 82, 255, 0.55) 18%, rgba(170, 82, 255, 0.0) 60%),
+        linear-gradient(189deg, rgba(48, 255, 170, 0.5) 22%, rgba(48, 255, 170, 0.0) 64%),
+        linear-gradient(196deg, rgba(0, 232, 160, 0.45) 26%, rgba(0, 232, 160, 0.0) 66%),
+        radial-gradient(120% 120% at 22% 92%, rgba(196, 90, 255, 0.35) 0%, rgba(196, 90, 255, 0.0) 57%),
+        radial-gradient(120% 110% at 88% 88%, rgba(74, 255, 190, 0.38) 0%, rgba(74, 255, 190, 0.0) 52%),
+        radial-gradient(120% 130% at 50% -20%, rgba(45, 87, 255, 0.23) 0%, rgba(45, 87, 255, 0.0) 66%),
+        linear-gradient(180deg, #040814 0%, #070d1a 48%, #071220 100%);
     background-position:
         0% 0%,
         0% 0%,
         0% 0%,
         0% 0%;
-    filter: blur(34px) saturate(120%);
+    filter: blur(38px) saturate(126%);
     opacity: 0.98;
-    animation: floatGlow 20s ease-in-out infinite;
+    animation: floatGlow 24s ease-in-out infinite;
 }
 
 body.user-template-scope::after {
