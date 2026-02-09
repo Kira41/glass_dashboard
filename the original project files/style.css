@@ -90,17 +90,20 @@ body.user-template-scope::before {
     pointer-events: none;
     z-index: 0;
     background:
-        linear-gradient(140deg, rgba(120, 180, 255, 0.20) 0%, rgba(120, 180, 255, 0.0) 48%),
-        linear-gradient(220deg, rgba(100, 255, 215, 0.14) 0%, rgba(100, 255, 215, 0.0) 55%),
-        linear-gradient(0deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.0) 42%),
-        linear-gradient(180deg, #0b1322 0%, #0a0f1a 100%);
+        radial-gradient(140% 120% at 12% 90%, rgba(25, 210, 138, 0.42) 0%, rgba(25, 210, 138, 0.0) 56%),
+        radial-gradient(110% 90% at 86% 88%, rgba(74, 255, 190, 0.33) 0%, rgba(74, 255, 190, 0.0) 54%),
+        radial-gradient(120% 100% at 42% 12%, rgba(198, 84, 255, 0.36) 0%, rgba(198, 84, 255, 0.0) 52%),
+        linear-gradient(167deg, rgba(189, 73, 255, 0.44) 8%, rgba(189, 73, 255, 0.0) 38%),
+        linear-gradient(193deg, rgba(38, 233, 166, 0.33) 12%, rgba(38, 233, 166, 0.0) 42%),
+        radial-gradient(120% 130% at 50% -20%, rgba(45, 87, 255, 0.24) 0%, rgba(45, 87, 255, 0.0) 66%),
+        linear-gradient(180deg, #060b15 0%, #090f1f 45%, #070d19 100%);
     background-position:
         0% 0%,
         0% 0%,
         0% 0%,
         0% 0%;
-    filter: blur(26px);
-    opacity: 0.95;
+    filter: blur(34px) saturate(120%);
+    opacity: 0.98;
     animation: floatGlow 20s ease-in-out infinite;
 }
 
@@ -114,17 +117,26 @@ body.user-template-scope::after {
             0% 0%,
             0% 0%,
             0% 0%,
+            0% 0%,
+            0% 0%,
+            0% 0%,
             0% 0%;
     }
     50% {
         background-position:
-            6% -4%,
-            -5% 8%,
-            4% -6%,
+            -3% 3%,
+            4% -2%,
+            2% 4%,
+            -7% -3%,
+            6% 2%,
+            -2% -4%,
             0% 0%;
     }
     100% {
         background-position:
+            0% 0%,
+            0% 0%,
+            0% 0%,
             0% 0%,
             0% 0%,
             0% 0%,
