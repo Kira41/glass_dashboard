@@ -351,7 +351,390 @@
       </nav>
 
       <div class="tab-content">
-        <div class="tab-pane fade show active" id="dashboard">
+        <!-- Trading Tab -->
+<div class="tab-pane fade" id="trading">
+<h2 class="mb-4">Plateforme du trading</h2>
+<div class="row">
+<!-- Trading Chart Section -->
+<div class="col-lg-8">
+<div class="card mb-4">
+<div class="card-header d-flex justify-content-between align-items-center">
+<div>
+<i class="fas fa-chart-line me-2"></i> Graphique de trading
+                      </div>
+<div class="d-flex align-items-center">
+                    <label class="form-label me-2 mb-0" for="currencyPair">Paire de devises :</label>
+                    <select class="form-select form-select-sm" id="currencyPair" style="width: auto;">
+                      <optgroup label="Crypto">
+                        <option value="COINBASE:BTCUSD">BTC/USD</option>
+                        <option value="COINBASE:ETHUSD">ETH/USD</option>
+                        <option value="COINBASE:USDTUSD">USDT/USD</option>
+                        <option value="BINANCE:BNBUSDT">BNB/USD</option>
+                        <option value="BITSTAMP:USDCUSD">USDC/USD</option>
+                        <option value="BINANCE:XRPUSDT">XRP/USD</option>
+                        <option value="BINANCE:ADAUSDT">ADA/USD</option>
+                        <option value="BINANCE:DOGEUSDT">DOGE/USD</option>
+                        <option value="SKILLING:MATICUSD">MATIC/USD</option>
+                        <option value="BINANCE:SOLUSDT">SOL/USD</option>
+                        <option value="BINANCE:DOTUSDT">DOT/USD</option>
+                        <option value="BINANCE:SHIBUSDT">SHIB/USD</option>
+                        <option value="BINANCE:AVAXUSDT">AVAX/USD</option>
+                        <option value="BINANCE:LUNAUSDT">LUNA/USD</option>
+                        <option value="BINANCE:LTCUSDT">LTC/USD</option>
+                        <option value="BINANCE:LINKUSDT">LINK/USD</option>
+                        <option value="BINANCE:UNIUSDT">UNI/USD</option>
+                        <option value="BINANCE:ALGOUSDT">ALGO/USD</option>
+                        <option value="BINANCE:XLMUSDT">XLM/USD</option>
+                        <option value="BINANCE:VETUSDT">VET/USD</option>
+                        <option value="BINANCE:ICPUSDT">ICP/USD</option>
+                        <option value="BINANCE:ATOMUSDT">ATOM/USD</option>
+                        <option value="BINANCE:FILUSDT">FIL/USD</option>
+                        <option value="BINANCE:TRXUSDT">TRX/USD</option>
+                        <option value="BINANCE:XTZUSDT">XTZ/USD</option>
+                        <option value="BINANCE:THETAUSDT">THETA/USD</option>
+                        <option value="BINANCE:FTTUSDT">FTT/USD</option>
+                        <option value="ACTIVTRADES:EOSUSD">EOS/USD</option>
+                        <option value="BINANCE:HBARUSDT">HBAR/USD</option>
+                        <option value="BINANCE:IOTAUSDT">IOTA/USD</option>
+                        <option value="BINANCE:BCHUSDT">BCH/USD</option>
+                        <option value="BINANCE:NEOUSDT">NEO/USD</option>
+                        <option value="BINANCE:EGLDUSDT">EGLD/USD</option>
+                        <option value="BINANCE:ZECUSDT">ZEC/USD</option>
+                        <option value="BINANCE:CAKEUSDT">CAKE/USD</option>
+                        <option value="BINANCE:ONEUSDT">ONE/USD</option>
+                        <option value="BINANCE:MANAUSDT">MANA/USD</option>
+                        <option value="BINANCE:ENJUSDT">ENJ/USD</option>
+                        <option value="BINANCE:AAVEUSDT">AAVE/USD</option>
+                        <option value="BITMEX:BMKR">MKR/USD</option>
+                        <option value="BINANCE:SNXUSDT">SNX/USD</option>
+                        <option value="BINANCE:COMPUSDT">COMP/USD</option>
+                        <option value="BINANCE:SUSHIUSDT">SUSHI/USD</option>
+                        <option value="POLONIEX:HTUSDT">HT/USD</option>
+                        <option value="UPBIT:TIAUSDT">CEL/USD</option>
+                        <option value="POLONIEX:OKBUSDT">OKB/USD</option>
+                        <option value="BLUEBERRY:WAVUSD">WAVES/USD</option>
+                        <option value="BITMART:SGCUSDT">SGC/USD</option>
+                      </optgroup>
+
+                      <optgroup label="Stocks">
+                        <option value="NASDAQ:AAPL">Apple (AAPL)</option>
+                        <option value="NASDAQ:MSFT">Microsoft (MSFT)</option>
+                        <option value="NASDAQ:AMZN">Amazon (AMZN)</option>
+                        <option value="NASDAQ:TSLA">Tesla (TSLA)</option>
+                        <option value="NASDAQ:GOOGL">Alphabet (GOOGL)</option>
+                        <option value="NASDAQ:META">Meta Platforms (META)</option>
+                        <option value="NASDAQ:NVDA">Nvidia (NVDA)</option>
+                        <option value="NYSE:BRK.B">Berkshire Hathaway (BRK.B)</option>
+                        <option value="NYSE:JPM">JPMorgan Chase (JPM)</option>
+                        <option value="NYSE:JNJ">Johnson &amp; Johnson (JNJ)</option>
+                        <option value="NYSE:V">Visa (V)</option>
+                        <option value="NYSE:MA">Mastercard (MA)</option>
+                        <option value="NYSE:PG">Procter &amp; Gamble (PG)</option>
+                        <option value="NYSE:KO">Coca-Cola (KO)</option>
+                        <option value="NASDAQ:PEP">PepsiCo (PEP)</option>
+                        <option value="NASDAQ:INTC">Intel (INTC)</option>
+                        <option value="NASDAQ:CSCO">Cisco (CSCO)</option>
+                        <option value="NASDAQ:WMT">Walmart (WMT)</option>
+                        <option value="NYSE:XOM">ExxonMobil (XOM)</option>
+                        <option value="NYSE:CVX">Chevron (CVX)</option>
+                        <option value="NYSE:DIS">Disney (DIS)</option>
+                        <option value="NYSE:NKE">Nike (NKE)</option>
+                        <option value="NYSE:MCD">McDonald’s (MCD)</option>
+                        <option value="NYSE:PFE">Pfizer (PFE)</option>
+                        <option value="NASDAQ:MRNA">Moderna (MRNA)</option>
+                        <option value="NYSE:ABBV">AbbVie (ABBV)</option>
+                        <option value="NYSE:CRM">Salesforce (CRM)</option>
+                        <option value="NASDAQ:ADBE">Adobe (ADBE)</option>
+                        <option value="NYSE:ORCL">Oracle (ORCL)</option>
+                        <option value="NYSE:T">AT&amp;T (T)</option>
+                        <option value="NYSE:VZ">Verizon (VZ)</option>
+                        <option value="NYSE:BA">Boeing (BA)</option>
+                        <option value="NYSE:CAT">Caterpillar (CAT)</option>
+                        <option value="NASDAQ:HON">Honeywell (HON)</option>
+                        <option value="NYSE:LMT">Lockheed Martin (LMT)</option>
+                        <option value="NASDAQ:SBUX">Starbucks (SBUX)</option>
+                        <option value="NYSE:GE">General Electric (GE)</option>
+                        <option value="NYSE:IBM">IBM (IBM)</option>
+                        <option value="NYSE:SHEL">Shell (SHEL)</option>
+                        <option value="NYSE:BP">BP (BP)</option>
+                        <option value="NYSE:TTE">TotalEnergies (TTE)</option>
+                        <option value="OTC:SIEGY">Siemens (SIEGY)</option>
+                        <option value="NYSE:SAP">SAP (SAP)</option>
+                        <option value="OTC:VWAGY">Volkswagen (VWAGY)</option>
+                        <option value="BSE:BMW">BMW (BMWYY)</option>
+                        <option value="NYSE:TM">Toyota (TM)</option>
+                        <option value="NYSE:SONY">Sony (SONY)</option>
+                        <option value="OTC:SSNLF">Samsung Electronics (SSNLF)</option>
+                        <option value="NYSE:BABA">Alibaba (BABA)</option>
+                        <option value="OTC:TCEHY">Tencent (TCEHY)</option>
+                        <option value="NASDAQ:PYPL">PayPal (PYPL)</option>
+                      </optgroup>
+
+                      <optgroup label="Forex">
+                        <option value="FX_IDC:EURUSD">USD/EUR</option>
+                        <option value="FX_IDC:USDJPY">USD/JPY</option>
+                        <option value="FX_IDC:GBPUSD">USD/GBP</option>
+                        <option value="FX_IDC:USDCHF">USD/CHF</option>
+                        <option value="FX_IDC:USDCAD">USD/CAD</option>
+                        <option value="FX_IDC:AUDUSD">AUD/USD</option>
+                        <option value="FX_IDC:NZDUSD">NZD/USD</option>
+                        <option value="FX_IDC:EURGBP">EUR/GBP</option>
+                        <option value="FX_IDC:EURJPY">EUR/JPY</option>
+                        <option value="FX_IDC:GBPJPY">GBP/JPY</option>
+                      </optgroup>
+
+                      <optgroup label="Indices">
+                        <option value="FOREXCOM:SPXUSD">S&amp;P 500</option>
+                        <option value="FOREXCOM:DJI">Dow Jones Industrial Average (DJIA)</option>
+                        <option value="FOREXCOM:NSXUSD">Nasdaq 100</option>
+                        <option value="FOREXCOM:UKXGBP">FTSE 100</option>
+                        <option value="INDEX:DEU40">DAX 30</option>
+                        <option value="INDEX:CAC40">CAC 40</option>
+                        <option value="INDEX:NKY">Nikkei 225</option>
+                        <option value="INDEX:HSI">Hang Seng</option>
+                        <option value="SSE:000001">Shanghai Composite</option>
+                        <option value="FOREXCOM:US2000">Russell 2000</option>
+                      </optgroup>
+
+                      <optgroup label="Commodities">
+                        <option value="CMCMARKETS:GOLD">Gold/USD</option>
+                        <option value="CMCMARKETS:SILVER">Silver/USD</option>
+                        <option value="CMCMARKETS:PLATINUM">Platinum/USD</option>
+                        <option value="CMCMARKETS:COPPER">Copper/USD</option>
+                        <option value="TVC:USOIL">Crude Oil – WTI/USD</option>
+                        <option value="TVC:UKOIL">Crude Oil – Brent/USD</option>
+                        <option value="SKILLING:NATGAS">Natural Gas/USD</option>
+                        <option value="AMEX:COAL">Coal/USD</option>
+                        <option value="FUSIONMARKETS:XALUSD">Aluminum/USD</option>
+                        <option value="EIGHTCAP:XNIUSD">Nickel/USD</option>
+                        <option value="FUSIONMARKETS:XZNUSD">Zinc/USD</option>
+                        <option value="FUSIONMARKETS:XPBUSD">Lead/USD</option>
+                        <option value="CAPITALCOM:TSI">Iron Ore/USD</option>
+                        <option value="SKILLING:WHEAT">Wheat/USD</option>
+                        <option value="SKILLING:CORN">Corn/USD</option>
+                        <option value="SKILLING:SOYBEAN">Soybeans/USD</option>
+                        <option value="SKILLING:COFFEE">Coffee/USD</option>
+                        <option value="SKILLING:COCOA">Cocoa/USD</option>
+                        <option value="SKILLING:SUGAR">Sugar/USD</option>
+                        <option value="SKILLING:COTTON">Cotton/USD</option>
+                      </optgroup>
+                    </select>
+                    <label class="form-label ms-3 me-2 mb-0" for="chartTheme">Thème :</label>
+                    <select class="form-select form-select-sm" id="chartTheme" style="width: auto;">
+                      <option value="light">Clair</option>
+                      <option value="dark">Sombre</option>
+                    </select>
+</div>
+</div>
+<div class="card-body p-0">
+<!-- TradingView Chart Container -->
+<div id="tradingview_chart" style="height: 500px; width: 100%;">
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="height:100%;width:100%">
+<div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+<div class="tradingview-widget-copyright">
+<a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+<span class="blue-text" hidden>Track all markets on TradingView</span>
+</a>
+</div>
+<script async="" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" type="text/javascript">
+                            {
+                              "autosize": true,
+                              "symbol": "BINANCE:BTCUSDT",
+                              "interval": "D",
+                              "timezone": "Etc/UTC",
+                              "theme": "light",
+                              "style": "1",
+                              "locale": "en",
+                              "allow_symbol_change": true,
+                              "calendar": false,
+                              "support_host": "https://www.tradingview.com"
+                            }
+                          </script>
+</div>
+<!-- TradingView Widget END -->
+</div>
+</div>
+</div>
+</div>
+<!-- Trading Panel -->
+<div class="col-lg-4">
+<!-- Current Price Card -->
+<div class="card mb-3">
+<div class="card-body text-center">
+<h5 class="card-title">Prix actuel</h5>
+<h2 class="text-primary mb-0" id="currentPrice">loading...</h2>
+<small class="text-muted" id="priceChange">loading...</small>
+</div>
+</div>
+<!-- Trading Form -->
+<div class="card mb-3">
+<div class="card-header">
+<i class="fas fa-exchange-alt me-2"></i> Exécution de la transaction
+                    </div>
+<div class="card-body">
+<form id="tradingForm">
+<div class="mb-3">
+<label class="form-label" for="tradeAmount">Montant</label>
+<div class="input-group">
+<input class="form-control" name="tradeAmount" id="tradeAmount" placeholder="Entrez le montant" required="" step="0.01" type="number"/>
+<span class="input-group-text" id="tradeAmountCurrency" style="cursor: pointer;">
+  <i class="fas fa-exchange-alt me-1"></i>USD
+</span>
+</div>
+<div class="form-text">Solde disponible : <span class="fw-bold" id="soldeintrade">---</span>
+</div>
+<div class="form-text">Valeur de la paire : <span class="fw-bold" id="tradeAmountEquivalent">--</span>
+</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="orderType">Type d’ordre</label>
+<select class="form-select" id="orderType">
+<option value="market">Ordre au marché</option>
+<option value="limit">Ordre à cours limité</option>
+<option value="stop">Ordre stop</option>
+<option value="stoplimit">Stop-limit</option>
+<option value="trailing_stop">Trailing stop</option>
+<option value="oco">OCO</option>
+</select>
+</div>
+<div class="mb-3" id="stopPriceDiv" style="display: none;">
+<label class="form-label" for="stopPrice">Prix stop</label>
+<div class="input-group">
+  <input class="form-control" name="stopPrice" id="stopPrice" placeholder="Entrez le prix" step="0.01" type="number"/>
+  <span class="input-group-text">USD</span>
+  <button class="btn btn-outline-secondary" id="useCurrentStopPrice" type="button">
+    <i class="fas fa-bolt"></i>
+  </button>
+</div>
+</div>
+<div class="mb-3" id="limitPriceDiv" style="display: none;">
+<label class="form-label" for="limitPrice">Prix limite</label>
+<div class="input-group">
+  <input class="form-control" name="limitPrice" id="limitPrice" placeholder="Entrez le prix" step="0.01" type="number"/>
+  <span class="input-group-text">USD</span>
+  <button class="btn btn-outline-secondary" id="useCurrentLimitPrice" type="button">
+    <i class="fas fa-bolt"></i>
+  </button>
+</div>
+<div class="mb-3" id="stopLimitPriceDiv" style="display: none;">
+<label class="form-label" for="stopLimitPrice">Prix limite du stop</label>
+<div class="input-group">
+<input class="form-control" name="stopLimitPrice" id="stopLimitPrice" placeholder="Entrez le prix" step="0.01" type="number"/>
+<span class="input-group-text">USD</span>
+</div>
+</div>
+</div>
+<div class="row g-2 mb-3">
+<div class="col-6">
+<button class="btn btn-success w-100" id="buyBtn" type="button">
+<i class="fas fa-arrow-up me-2"></i>Acheter </button>
+</div>
+<div class="col-6">
+<button class="btn btn-danger w-100" id="sellBtn" type="button">
+<i class="fas fa-arrow-down me-2"></i>Vendre </button>
+</div>
+</div>
+</form>
+</div>
+<!-- Stop Loss Settings -->
+<div class="card">
+<div class="card-header">
+<i class="fas fa-shield-alt me-2"></i> Paramètres du stop loss
+                    </div>
+<div class="card-body">
+<div class="form-check mb-3">
+<input class="form-check-input" id="enableStopLoss" type="checkbox"/>
+<label class="form-check-label" for="enableStopLoss"> Activer le stop loss </label>
+</div>
+<div id="stopLossSettings" style="display: none;">
+<div class="mb-3">
+<label class="form-label" for="stopLossType">Type de stop loss</label>
+<select class="form-select" id="stopLossType">
+<option value="price">À l’atteinte d’un prix spécifique</option>
+<option value="percentage">Lors d’un pourcentage de perte spécifié</option>
+<option value="time">À un moment précis</option>
+<option value="trailing">Trailing stop</option>
+</select>
+</div>
+<div class="mb-3" id="stopLossPriceDiv">
+<label class="form-label" for="stopLossPrice">Prix du stop loss</label>
+<div class="input-group">
+<input class="form-control" name="stopLossPrice" id="stopLossPrice" placeholder="Entrez le prix" step="0.01" type="number"/>
+<span class="input-group-text">USD</span>
+</div>
+</div>
+<div class="mb-3" id="stopLossPercentageDiv" style="display: none;">
+<label class="form-label" for="stopLossPercentage">Pourcentage de perte autorisé</label>
+<div class="input-group">
+<input class="form-control" name="stopLossPercentage" id="stopLossPercentage" max="100" min="0.1" placeholder="Entrez le pourcentage" step="0.1" type="number"/>
+<span class="input-group-text">%</span>
+</div>
+</div>
+<div class="mb-3" id="trailingPercentageDiv" style="display: none;">
+<label class="form-label" for="trailingPercentage">Pourcentage du trailing stop</label>
+<div class="input-group">
+<input class="form-control" name="trailingPercentage" id="trailingPercentage" max="100" min="0.1" placeholder="Entrez le pourcentage" step="0.1" type="number"/>
+<span class="input-group-text">%</span>
+</div>
+</div>
+<div class="mb-3" id="stopLossTimeDiv" style="display: none;">
+<label class="form-label" for="stopLossTime">Heure d'arrêt du trading</label>
+<input class="form-control" id="stopLossTime" type="datetime-local"/>
+</div>
+<div class="form-check mb-3">
+<input class="form-check-input" id="enableOCO" type="checkbox"/>
+<label class="form-check-label" for="enableOCO"> Activer OCO (take profit + stop loss)</label>
+</div>
+<div class="mb-3" id="takeProfitDiv" style="display: none;">
+<label class="form-label" for="takeProfitPrice">Prix take profit</label>
+<div class="input-group">
+<input class="form-control" name="takeProfitPrice" id="takeProfitPrice" placeholder="Entrez le prix" step="0.01" type="number"/>
+<span class="input-group-text">USD</span>
+</div>
+</div>
+<button class="btn btn-warning btn-sm w-100" id="setStopLoss" type="button">
+<i class="fas fa-save me-2"></i>Enregistrer les paramètres du stop loss </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trading History -->
+<div class="row mt-4">
+<div class="col-12">
+<div class="card" id="historiquedutradingCard">
+<div class="card-header" id="historiquedutradingHeader">
+<i class="fas fa-history me-2"></i> Historique du trading
+                    </div>
+<div class="card-body">
+<div id="cancelOrderAlert"></div>
+<div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
+<table class="table table-hover" id="historiqueTrading">
+<thead>
+<tr>
+<th>Opération</th>
+<th>Le temps</th>
+<th>Paire de devises</th>
+<th>Type</th>
+<th>Quantité</th>
+<th>Prix d'achat</th>
+<th>Statut</th>
+<th>Profit/Perte</th>
+<th>Annuler</th>
+</tr>
+</thead>
+<tbody id="tradingHistory">
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade show active" id="dashboard">
           <section class="stats-grid">
             <div class="glass-card glass-card-3d stat-card">
               <div class="greenCurve">
