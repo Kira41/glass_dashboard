@@ -170,6 +170,71 @@
       stroke: #34d399 !important;
       filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
     }
+
+    body.user-template-scope #trading #historiqueTrading,
+    body.user-template-scope #trading #historiqueTrading thead th,
+    body.user-template-scope #trading #historiqueTrading tbody td {
+      background: rgba(7, 10, 18, 0.92) !important;
+      color: #fff !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    body.user-template-scope #trading #historiqueTrading tbody tr:hover > * {
+      background: rgba(52, 211, 153, 0.08) !important;
+    }
+
+    @keyframes section-fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body.user-template-scope .tab-pane .card,
+    body.user-template-scope .tab-pane .glass-card,
+    body.user-template-scope .tab-pane .table-responsive,
+    body.user-template-scope .tab-pane .table-wrapper {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    body.user-template-scope .tab-pane.active.show .card,
+    body.user-template-scope .tab-pane.active.show .glass-card,
+    body.user-template-scope .tab-pane.active.show .table-responsive,
+    body.user-template-scope .tab-pane.active.show .table-wrapper {
+      animation: section-fade-up 0.55s ease-out both;
+    }
+
+    body.user-template-scope .tab-pane.active.show .row > div:nth-child(1) > :is(.card, .glass-card),
+    body.user-template-scope .tab-pane.active.show > .row > div:nth-child(1) > :is(.card, .glass-card) {
+      animation-delay: 0.06s;
+    }
+
+    body.user-template-scope .tab-pane.active.show .row > div:nth-child(2) > :is(.card, .glass-card),
+    body.user-template-scope .tab-pane.active.show > .row > div:nth-child(2) > :is(.card, .glass-card) {
+      animation-delay: 0.12s;
+    }
+
+    body.user-template-scope .tab-pane.active.show .row > div:nth-child(3) > :is(.card, .glass-card),
+    body.user-template-scope .tab-pane.active.show > .row > div:nth-child(3) > :is(.card, .glass-card) {
+      animation-delay: 0.18s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.user-template-scope .tab-pane .card,
+      body.user-template-scope .tab-pane .glass-card,
+      body.user-template-scope .tab-pane .table-responsive,
+      body.user-template-scope .tab-pane .table-wrapper {
+        opacity: 1;
+        transform: none;
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body class="user-template-scope">
@@ -361,7 +426,7 @@
                 </svg>
                 Notifications récentes
                 </span>
-                <span class="badge bg-primary-subtle text-primary" id="notificationsCountBadge">0</span>
+                <span class="status-badge processing" id="notificationsCountBadge">0</span>
               </li>
               <li><hr class="dropdown-divider"/></li>
               <li class="px-2">
@@ -1538,8 +1603,8 @@
 <h5 class="mb-1" id="fullNameHeader">---</h5>
 <p class="text-muted mb-3" id="memberSince">Membre depuis janvier 2025</p>
 <div class="d-flex justify-content-center mb-2">
-<span class="badge bg-success me-2" id="compteverifie">---</span>
-<span class="badge bg-primary" id="niveauavance">---</span>
+<span class="status-badge completed me-2" id="compteverifie">---</span>
+<span class="status-badge processing" id="niveauavance">---</span>
 </div>
 </div>
 </div>
@@ -1551,7 +1616,7 @@
 <div class="mb-3">
 <div class="d-flex justify-content-between align-items-center mb-2">
 <span>Niveau de sécurité du mot de passe</span>
-<span class="badge bg-success" id="passwordStrength">---</span>
+<span class="status-badge completed" id="passwordStrength">---</span>
 </div>
 <div class="progress">
 <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="progress-bar bg-success" id="passwordStrengthBar" role="progressbar" style=""></div>
@@ -1887,31 +1952,31 @@
 <div>
 <i class="fas fa-clock text-warning me-2" id="enregistrementducompteicon"></i> Enregistrement du compte
                           </div>
-<span class="badge bg-secondary rounded-pill" id="enregistrementducomptestat">En cours</span>
+<span class="status-badge processing" id="enregistrementducomptestat">En cours</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-center">
 <div>
 <i class="fas fa-clock text-warning me-2" id="confirmationdeladresseemailicon"></i> Confirmation de l’adresse e-mail
                           </div>
-<span class="badge bg-secondary rounded-pill" id="confirmationdeladresseemailstat">En cours</span>
+<span class="status-badge processing" id="confirmationdeladresseemailstat">En cours</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-center">
 <div>
 <i class="fas fa-clock text-warning me-2" id="telechargerlesdocumentsdidentiteicon"></i> Télécharger les documents d’identité
                           </div>
-<span class="badge bg-secondary rounded-pill" id="telechargerlesdocumentsdidentitestat">En cours</span>
+<span class="status-badge processing" id="telechargerlesdocumentsdidentitestat">En cours</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-center">
 <div>
 <i class="fas fa-clock text-warning me-2" id="verificationdeladresseicon"></i> Vérification de l’adresse
                           </div>
-<span class="badge bg-secondary rounded-pill" id="verificationdeladressestat">En cours</span>
+<span class="status-badge processing" id="verificationdeladressestat">En cours</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-center">
 <div>
 <i class="fas fa-clock text-warning me-2" id="revisionfinaleicon"></i> Révision finale
                           </div>
-<span class="badge bg-secondary rounded-pill" id="revisionfinalestat">En cours</span>
+<span class="status-badge processing" id="revisionfinalestat">En cours</span>
 </li>
 </ul>
 </div>
@@ -2090,7 +2155,7 @@
             <i class="fas fa-seedling me-2 text-success"></i>
             Starter Plan
           </div>
-          <span class="badge bg-success-subtle text-success">Starter</span>
+          <span class="status-badge completed">Starter</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
@@ -2117,7 +2182,7 @@
             <i class="fas fa-bolt me-2 text-primary"></i>
             Pro Package
           </div>
-          <span class="badge bg-primary">Recommandé</span>
+          <span class="status-badge processing">Recommandé</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
@@ -2144,7 +2209,7 @@
             <i class="fas fa-crown me-2 text-warning"></i>
             Premium Suite
           </div>
-          <span class="badge bg-warning-subtle text-warning">Premium</span>
+          <span class="status-badge pending">Premium</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
@@ -2249,6 +2314,14 @@
       const tabLinks = document.querySelectorAll('#sidebar .nav-link[data-section]');
       const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
 
+      const activateInnerTab = (triggerId) => {
+        const trigger = document.getElementById(triggerId);
+        if (!trigger || typeof bootstrap === 'undefined' || !bootstrap.Tab) {
+          return;
+        }
+        bootstrap.Tab.getOrCreateInstance(trigger).show();
+      };
+
       const activateTab = (sectionId) => {
         const targetPane = document.getElementById(sectionId);
         if (!targetPane) {
@@ -2264,6 +2337,14 @@
           pane.classList.toggle('active', isActive);
           pane.classList.toggle('show', isActive);
         });
+
+        if (sectionId === 'deposit') {
+          activateInnerTab('bank-tab');
+        }
+
+        if (sectionId === 'withdraw') {
+          activateInnerTab('bank-withdraw-tab');
+        }
       };
 
       tabLinks.forEach(link => {

@@ -800,13 +800,13 @@ function initializeUI() {
             const $badge = $('#' + key);
             const $icon = $('#' + key.replace('stat', 'icon'));
             if (val === "1") {
-                $badge.text('complet').removeClass('bg-danger bg-warning bg-secondary').addClass('bg-success');
+                $badge.text('complet').removeClass('completed pending processing').addClass('completed');
                 $icon.removeClass('fa-times-circle text-danger fa-clock text-warning').addClass('fa-check-circle text-success');
             } else if (val === "2") {
-                $badge.text('En cours').removeClass('bg-success bg-danger bg-secondary').addClass('bg-warning');
+                $badge.text('En cours').removeClass('completed pending processing').addClass('processing');
                 $icon.removeClass('fa-times-circle text-danger fa-check-circle text-success').addClass('fa-clock text-warning');
             } else {
-                $badge.text('Incomplet').removeClass('bg-success bg-warning bg-secondary').addClass('bg-danger');
+                $badge.text('Incomplet').removeClass('completed pending processing').addClass('pending');
                 $icon.removeClass('fa-check-circle text-success fa-clock text-warning').addClass('fa-times-circle text-danger');
             }
         });
@@ -923,10 +923,10 @@ function initializeUI() {
             const step = dashboardData.defaultKYCStatus[k];
             const val = typeof step === 'object' ? String(step.status) : String(step);
             const date = (typeof step === 'object' && step.date) ? step.date : '-';
-            let badgeClass = 'bg-danger';
+            let badgeClass = 'pending';
             let statusTxt = 'Incomplet';
-            if (val === '1') { badgeClass = 'bg-success'; statusTxt = 'complet'; }
-            else if (val === '2') { badgeClass = 'bg-warning'; statusTxt = 'En cours'; }
+            if (val === '1') { badgeClass = 'completed'; statusTxt = 'complet'; }
+            else if (val === '2') { badgeClass = 'processing'; statusTxt = 'En cours'; }
             const info = stepInfo[k] || { label: k, desc: {} };
             const descObj = info.desc || {};
             const desc = typeof descObj === 'object' ? (descObj[val] || descObj.default || '') : descObj;
@@ -935,7 +935,7 @@ function initializeUI() {
                     <div class="timeline-date">${escapeHtml(date || '-')}</div>
                     <div class="timeline-content">
                         <div class="d-flex align-items-center mb-2">
-                            <span class="badge ${escapeHtml(badgeClass)} me-2">${escapeHtml(statusTxt)}</span>
+                            <span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(badgeClass, statusTxt))} me-2">${escapeHtml(statusTxt)}</span>
                             <h6 class="mb-0">${escapeHtml(info.label)}</h6>
                         </div>
                         <p class="text-muted small">${escapeHtml(desc)}</p>
@@ -1101,7 +1101,27 @@ function initializeUI() {
         return prefix + randomDigits;
     }
 
-    function addTransactionRecord(type, amount, status = 'En cours', statusClass = 'bg-warning', opNum = null) {
+
+    function normalizeStatusBadgeClass(statusClass, statusText = '') {
+        const raw = String(statusClass || '').toLowerCase();
+        const text = String(statusText || '').toLowerCase();
+
+        if (raw.includes('success') || raw.includes('completed') || text.includes('complet') || text.includes('paid')) {
+            return 'completed';
+        }
+
+        if (raw.includes('warning') || raw.includes('pending') || text.includes('incomplet') || text.includes('pending')) {
+            return 'pending';
+        }
+
+        if (raw.includes('primary') || raw.includes('info') || raw.includes('processing') || text.includes('cours') || text.includes('processing')) {
+            return 'processing';
+        }
+
+        return 'processing';
+    }
+
+    function addTransactionRecord(type, amount, status = 'En cours', statusClass = 'processing', opNum = null) {
         const today = new Date().toISOString().split('T')[0].replace(/-/g, '/');
         dashboardData.transactions = dashboardData.transactions || [];
         const num = opNum || generateOperationNumber(type);
@@ -1136,7 +1156,7 @@ function initializeUI() {
                         <td>${escapeHtml(t.type)}</td>
                         <td>${formatDollar(t.amount)}</td>
                         <td>${escapeHtml(t.date)}</td>
-                        <td><span class="badge ${escapeHtml(t.statusClass)}">${escapeHtml(t.status)}</span></td>
+                        <td><span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(t.statusClass, t.status))}">${escapeHtml(t.status)}</span></td>
                     </tr>`);
             });
         }
@@ -1285,6 +1305,12 @@ function initializeUI() {
         return 'bg-danger';
     }
 
+    function passwordBadgeClass(score) {
+        if (score >= 90) return 'completed';
+        if (score >= 50) return 'processing';
+        return 'pending';
+    }
+
     $('#savePasswordBtn').on('click', async function () {
         const current = $('#currentPassword').val();
         const newPw = $('#newPassword').val();
@@ -1303,10 +1329,11 @@ function initializeUI() {
         const score = computePasswordStrength(newPw);
         const label = strengthLabel(score);
         const cls = barClass(score);
+        const badgeCls = passwordBadgeClass(score);
         $('#passwordStrength')
             .text(label)
-            .removeClass('bg-success bg-warning bg-danger')
-            .addClass(cls);
+            .removeClass('completed processing pending')
+            .addClass(badgeCls);
         $('#passwordStrengthBar')
             .css('width', score + "%")
             .attr('aria-valuenow', score)
@@ -1375,10 +1402,10 @@ function initializeUI() {
                     amount: amt,
                     method,
                     status: 'En cours',
-                    statusClass: 'bg-warning'
+                    statusClass: 'processing'
                 });
                 // retain full withdrawal history; display will cap items
-                addTransactionRecord('Retrait', amt, 'En cours', 'bg-warning', opNumR);
+                addTransactionRecord('Retrait', amt, 'En cours', 'processing', opNumR);
                 renderWithdrawHistory();
                 loadTransactions();
                 const currentBalance = parseDollar(dashboardData.personalData.balance);
@@ -1448,11 +1475,11 @@ function initializeUI() {
                     amount: amt,
                     method,
                     status: 'En cours',
-                    statusClass: 'bg-warning'
+                    statusClass: 'processing'
                 });
                 // keep full deposit history; interface truncates to latest
                 renderDepositHistory();
-                addTransactionRecord('Dépôt', amt, 'En cours', 'bg-warning', opNumD);
+                addTransactionRecord('Dépôt', amt, 'En cours', 'processing', opNumD);
                 loadTransactions();
                 const currentBalance = parseDollar(dashboardData.personalData.balance);
                 const newBalance = currentBalance + amt;
@@ -1638,7 +1665,7 @@ function initializeUI() {
                         <td>${escapeHtml(d.operationNumber)}</td>
                         <td>${formatDollar(d.amount)}</td>
                         <td>${escapeHtml(d.method)}</td>
-                        <td><span class="badge ${escapeHtml(d.statusClass)}">${escapeHtml(d.status)}</span></td>
+                        <td><span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(d.statusClass, d.status))}">${escapeHtml(d.status)}</span></td>
                     </tr>`);
             });
         } else {
@@ -1661,7 +1688,7 @@ function initializeUI() {
                         <td>${escapeHtml(r.operationNumber)}</td>
                         <td>${formatDollar(r.amount)}</td>
                         <td>${escapeHtml(r.method)}</td>
-                        <td><span class="badge ${escapeHtml(r.statusClass)}">${escapeHtml(r.status)}</span></td>
+                        <td><span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(r.statusClass, r.status))}">${escapeHtml(r.status)}</span></td>
                     </tr>`);
             });
         } else {
@@ -1693,10 +1720,10 @@ function initializeUI() {
                         <td>${escapeHtml(trade.operationNumber)}</td>
                         <td>${escapeHtml(trade.temps)}</td>
                         <td>${escapeHtml(trade.paireDevises)}</td>
-                        <td><span class="badge ${escapeHtml(trade.statutTypeClass)}">${escapeHtml(trade.type)}</span></td>
+                        <td><span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(trade.statutTypeClass, trade.type))}">${escapeHtml(trade.type)}</span></td>
                         <td>${formatCryptoFixed(trade.montant)} ${escapeHtml((trade.paireDevises||'').split('/')[0])}</td>
                         <td>${formatDollar(trade.prix)}</td>
-                        <td><span class="badge ${escapeHtml(trade.statutClass)}">${escapeHtml(trade.statut)}</span></td>
+                        <td><span class="status-badge ${escapeHtml(normalizeStatusBadgeClass(trade.statutClass, trade.statut))}">${escapeHtml(trade.statut)}</span></td>
                         <td class="${escapeHtml(profitCls)}" data-profit="1"${fixedAttr}>${profitText}</td>
                         <td>${trade.statut==='En cours'?`<button class="btn btn-sm btn-danger cancel-order-btn" data-op="${escapeHtml(trade.operationNumber)}" title="Annuler"><i class="fas fa-ban"></i></button>`:'-'}</td>
                     </tr>`);
@@ -1808,7 +1835,7 @@ function initializeUI() {
         if (idx !== -1) {
             const order = dashboardData.tradingHistory[idx];
             order.statut = 'complet';
-            order.statutClass = 'bg-success';
+            order.statutClass = 'completed';
             renderTradingHistory();
         }
     };
@@ -1849,11 +1876,11 @@ function initializeUI() {
         order.profitPerte = profit;
         order.profitClass = profit >= 0 ? 'text-success' : 'text-danger';
         order.statut = 'complet';
-        order.statutClass = 'bg-success';
+        order.statutClass = 'completed';
         const tx = (dashboardData.transactions || []).find(t => t.operationNumber === order.operationNumber);
         if (tx) {
             tx.status = 'complet';
-            tx.statusClass = 'bg-success';
+            tx.statusClass = 'completed';
         }
         const invested = order.invested || priceValue * qty;
         let balance = parseDollar(dashboardData.personalData.balance);
