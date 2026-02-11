@@ -171,9 +171,9 @@
       filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
     }
 
-    body.user-template-scope :is(#historiqueTrading, #transactionsTable),
-    body.user-template-scope :is(#historiqueTrading, #transactionsTable) thead th,
-    body.user-template-scope :is(#historiqueTrading, #transactionsTable) tbody td {
+    body.user-template-scope #trading #historiqueTrading,
+    body.user-template-scope #trading #historiqueTrading thead th,
+    body.user-template-scope #trading #historiqueTrading tbody td {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)) !important;
       color: #fff !important;
       border-color: rgba(255, 255, 255, 0.12) !important;
@@ -182,7 +182,7 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
-    body.user-template-scope :is(#historiqueTrading, #transactionsTable) tbody tr:hover > * {
+    body.user-template-scope #trading #historiqueTrading tbody tr:hover > * {
       background: rgba(52, 211, 153, 0.08) !important;
     }
 
