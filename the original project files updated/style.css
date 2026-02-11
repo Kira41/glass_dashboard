@@ -380,6 +380,22 @@
   font-size: 0.95rem;
 }
 
+.cancel-order-btn {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.45), rgba(127, 29, 29, 0.35)) !important;
+  border: 1px solid rgba(248, 113, 113, 0.45) !important;
+  color: #fee2e2 !important;
+  box-shadow: 0 8px 22px rgba(127, 29, 29, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cancel-order-btn:hover,
+.cancel-order-btn:focus {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.55), rgba(153, 27, 27, 0.45)) !important;
+  border-color: rgba(252, 165, 165, 0.6) !important;
+  color: #fff1f2 !important;
+}
+
 .offer-list li {
   margin-bottom: 6px;
 }
