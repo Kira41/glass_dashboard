@@ -112,6 +112,64 @@
         animation: none;
       }
     }
+
+    /* UI polish for Deposit / Withdraw / Trading / KYC / Other sections */
+    body.user-template-scope #deposit,
+    body.user-template-scope #withdraw,
+    body.user-template-scope #trading,
+    body.user-template-scope #kyc,
+    body.user-template-scope #offers {
+      color: #fff;
+    }
+
+    body.user-template-scope #deposit :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
+    body.user-template-scope #withdraw :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
+    body.user-template-scope #trading :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
+    body.user-template-scope #kyc :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
+    body.user-template-scope #offers :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted) {
+      color: #fff !important;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea, .input-group-text) {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      border-radius: 12px !important;
+      color: #fff !important;
+      min-height: 46px;
+      transition: all 0.2s ease;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea)::placeholder {
+      color: rgba(255, 255, 255, 0.72) !important;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea):focus {
+      border-color: #34d399 !important;
+      box-shadow: 0 0 0 0.2rem rgba(52, 211, 153, 0.2) !important;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .nav-tabs .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .nav-tabs .nav-link.active {
+      color: #34d399 !important;
+      border-color: rgba(52, 211, 153, 0.45) !important;
+      background: rgba(52, 211, 153, 0.1) !important;
+    }
+
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .card-header i,
+    body.user-template-scope .nav-link[data-section="deposit"] .nav-icon,
+    body.user-template-scope .nav-link[data-section="withdraw"] .nav-icon,
+    body.user-template-scope .nav-link[data-section="trading"] .nav-icon,
+    body.user-template-scope .nav-link[data-section="kyc"] .nav-icon,
+    body.user-template-scope .nav-link[data-section="offers"] .nav-icon {
+      color: #34d399 !important;
+      stroke: #34d399 !important;
+      filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
+    }
   </style>
 </head>
 <body class="user-template-scope">
@@ -241,7 +299,7 @@
                   <circle cx="12" cy="12" r="3"/>
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                 </svg>
-                Offres
+                Other
               </a>
             </li>
           </ul>
@@ -1262,23 +1320,23 @@
 </div>
 <!-- Withdraw Tab -->
 <div class="tab-pane fade" id="withdraw">
-<h2 class="mb-4">Retrait de fonds</h2>
+<h2 class="mb-4">Para Çekme</h2>
 <div id="withdrawAlert"></div>
 <div class="row">
 <div class="col-lg-8">
 <div class="card">
 <div class="card-header">
-<i class="fas fa-hand-holding-usd me-2"></i> Méthodes de retrait
+<i class="fas fa-hand-holding-usd me-2"></i> Çekim yöntemleri
                     </div>
 <div class="card-body">
 <ul class="nav nav-tabs" id="withdrawTabs" role="tablist">
 <li class="nav-item" role="presentation">
 <button aria-controls="bank-withdraw" aria-selected="true" class="nav-link active" data-bs-target="#bank-withdraw" data-bs-toggle="tab" id="bank-withdraw-tab" role="tab" type="button">
-<i class="fas fa-university me-2"></i>Virement bancaire </button>
+<i class="fas fa-university me-2"></i>Banka havalesi </button>
 </li>
 <li class="nav-item" role="presentation">
 <button aria-controls="crypto-withdraw" aria-selected="false" class="nav-link" data-bs-target="#crypto-withdraw" data-bs-toggle="tab" id="crypto-withdraw-tab" role="tab" type="button">
-<i class="fab fa-bitcoin me-2"></i>Cryptomonnaies </button>
+<i class="fab fa-bitcoin me-2"></i>Kripto paralar </button>
 </li>
 <li class="nav-item" role="presentation">
 <button aria-controls="paypal-withdraw" aria-selected="false" class="nav-link" data-bs-target="#paypal-withdraw" data-bs-toggle="tab" id="paypal-withdraw-tab" role="tab" type="button">
@@ -1289,69 +1347,69 @@
 <!-- Bank Transfer Withdraw Tab -->
 <div aria-labelledby="bank-withdraw-tab" class="tab-pane fade show active" id="bank-withdraw" role="tabpanel">
 <div class="alert alert-info mb-4">
-<i class="fas fa-info-circle me-2"></i> Entrez les coordonnées de votre compte bancaire pour retirer des fonds. La demande de retrait sera traitée sous 1 à 3 jours ouvrables.
+<i class="fas fa-info-circle me-2"></i> Para çekimi için banka hesap bilgilerinizi girin. Talebiniz 1-3 iş günü içinde işlenir.
                           </div>
 <form id="bankWithdrawForm">
 <div class="mb-3">
-<label class="form-label" for="withdrawAmount">Montant à retirer</label>
+<label class="form-label" for="withdrawAmount">Çekilecek tutar</label>
 <div class="input-group">
-<input class="form-control" name="withdrawAmount" id="withdrawAmount" placeholder="Entrez le montant" required="" type="number"/>
+<input class="form-control" name="withdrawAmount" id="withdrawAmount" placeholder="Tutarı girin" required="" type="number"/>
 <span class="input-group-text">$</span>
 </div>
-<div class="form-text">Solde disponible : <span class="fw-bold" id="soldedisponible1">--- $</span>
+<div class="form-text">Kullanılabilir bakiye: <span class="fw-bold" id="soldedisponible1">--- $</span>
 </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="bankName">Nom de la banque</label>
-<input class="form-control" name="bankName" id="bankName" placeholder="Entrez le nom de la banque" required="" type="text"/>
+<label class="form-label" for="bankName">Banka adı</label>
+<input class="form-control" name="bankName" id="bankName" placeholder="Banka adını girin" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="accountHolder">Nom du titulaire du compte</label>
-<input class="form-control" name="accountHolder" id="accountHolder" placeholder="Entrez le nom du titulaire du compte" required="" type="text"/>
+<label class="form-label" for="accountHolder">Hesap sahibi adı</label>
+<input class="form-control" name="accountHolder" id="accountHolder" placeholder="Hesap sahibinin adını girin" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="accountNumber">Numéro de compte</label>
-<input class="form-control" name="accountNumber" id="accountNumber" placeholder="Entrez le numéro de compte" required="" type="text"/>
+<label class="form-label" for="accountNumber">Hesap numarası</label>
+<input class="form-control" name="accountNumber" id="accountNumber" placeholder="Hesap numarasını girin" required="" type="text"/>
 </div>
 <div class="mb-3">
 <label class="form-label" for="iban">IBAN</label>
-<input class="form-control" name="iban" id="iban" placeholder="Entrez le Numéro IBAN" type="text"/>
+<input class="form-control" name="iban" id="iban" placeholder="IBAN numarasını girin" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="swiftCode">Code SWIFT/BIC</label>
-<input class="form-control" name="swiftCode" id="swiftCode" placeholder="Entrez le code SWIFT/BIC" type="text"/>
+<label class="form-label" for="swiftCode">SWIFT/BIC kodu</label>
+<input class="form-control" name="swiftCode" id="swiftCode" placeholder="SWIFT/BIC kodunu girin" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="withdrawNotes">Remarques (facultatif)</label>
-<textarea class="form-control" id="withdrawNotes" placeholder="Autres informations que vous souhaitez ajouter" rows="3"></textarea>
+<label class="form-label" for="withdrawNotes">Notlar (opsiyonel)</label>
+<textarea class="form-control" id="withdrawNotes" placeholder="Eklemek istediğiniz diğer bilgiler" rows="3"></textarea>
 </div>
 <div class="mb-3 form-check">
 <input checked="" class="form-check-input" id="saveBankInfo" type="checkbox" required/>
-<label class="form-check-label" for="saveBankInfo">Enregistrer les informations bancaires pour les transactions futures</label>
+<label class="form-check-label" for="saveBankInfo">Gelecekteki işlemler için banka bilgilerini kaydet</label>
 </div>
 <button class="btn btn-primary" type="submit">
-<i class="fas fa-paper-plane me-2"></i>Confirmer le retrait </button>
+<i class="fas fa-paper-plane me-2"></i>Para çekimini onayla </button>
 </form>
 </div>
 <!-- Crypto Withdraw Tab -->
 <div aria-labelledby="crypto-withdraw-tab" class="tab-pane fade" id="crypto-withdraw" role="tabpanel">
 <div class="alert alert-info mb-4">
-<i class="fas fa-info-circle me-2"></i> Entrez l’adresse de votre portefeuille numérique pour retirer des fonds. La demande de retrait sera traitée dans un délai de 1 à 24 heures.
+<i class="fas fa-info-circle me-2"></i> Para çekmek için cüzdan adresinizi girin. Talebiniz 1-24 saat içinde işlenir.
                           </div>
 <form id="cryptoWithdrawForm">
 <div class="mb-3">
-<label class="form-label" for="cryptoWithdrawAmount">Montant à retirer</label>
+<label class="form-label" for="cryptoWithdrawAmount">Çekilecek tutar</label>
 <div class="input-group">
-<input class="form-control" name="cryptoWithdrawAmount" id="cryptoWithdrawAmount" placeholder="Entrez le montant" required="" type="number"/>
+<input class="form-control" name="cryptoWithdrawAmount" id="cryptoWithdrawAmount" placeholder="Tutarı girin" required="" type="number"/>
 <span class="input-group-text">$</span>
 </div>
-<div class="form-text">Solde disponible : <span class="fw-bold" id="soldedisponible2">--- $</span>
+<div class="form-text">Kullanılabilir bakiye: <span class="fw-bold" id="soldedisponible2">--- $</span>
 </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="cryptoCurrencyWithdraw">Choisissez la crypto-monnaie</label>
+<label class="form-label" for="cryptoCurrencyWithdraw">Kripto para seçin</label>
 <select class="form-select" id="cryptoCurrencyWithdraw" required="">
-<option value="">-- Choisissez la crypto-monnaie --</option>
+<option value="">-- Kripto para seçin --</option>
 <option value="btc">Bitcoin</option>
 <option value="eth">Ethereum</option>
 <option value="usdt">Tether</option>
@@ -1359,59 +1417,59 @@
 </select>
 </div>
 <div class="mb-3">
-<label class="form-label" for="cryptoNetwork">Choisissez le réseau</label>
+<label class="form-label" for="cryptoNetwork">Ağ seçin</label>
 <select class="form-select" id="cryptoNetwork" required="">
-<option value="">-- Choisissez le réseau --</option>
+<option value="">-- Ağ seçin --</option>
 </select>
 <div class="form-text text-warning">
-<i class="fas fa-exclamation-triangle me-1"></i> Assurez-vous de choisir le bon réseau afin d’éviter toute perte de fonds.
+<i class="fas fa-exclamation-triangle me-1"></i> Varlık kaybını önlemek için doğru ağı seçtiğinizden emin olun.
                               </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="walletAddress">Adresse du portefeuille</label>
-<input class="form-control" name="walletAddress" id="walletAddress" placeholder="Entrez l’adresse de votre portefeuille numérique" required="" type="text"/>
+<label class="form-label" for="walletAddress">Cüzdan adresi</label>
+<input class="form-control" name="walletAddress" id="walletAddress" placeholder="Cüzdan adresinizi girin" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="walletAddressConfirm">Confirmation de l’adresse du portefeuille</label>
-<input class="form-control" name="walletAddressConfirm" id="walletAddressConfirm" placeholder="Entrez à nouveau l’adresse du portefeuille" required="" type="text"/>
+<label class="form-label" for="walletAddressConfirm">Cüzdan adresi onayı</label>
+<input class="form-control" name="walletAddressConfirm" id="walletAddressConfirm" placeholder="Cüzdan adresini tekrar girin" required="" type="text"/>
 </div>
 <div class="mb-3 form-check">
 <input class="form-check-input" id="confirmAddress" required="" type="checkbox"/>
-<label class="form-check-label" for="confirmAddress">Je confirme que l’adresse du portefeuille est correcte et j’assume l’entière responsabilité en cas d’erreur dans l’adresse.</label>
+<label class="form-check-label" for="confirmAddress">Cüzdan adresinin doğru olduğunu onaylıyor ve adres hatasından doğabilecek tüm sorumluluğu kabul ediyorum.</label>
 </div>
 <button class="btn btn-primary" type="submit">
-<i class="fas fa-paper-plane me-2"></i>Confirmer le retrait </button>
+<i class="fas fa-paper-plane me-2"></i>Para çekimini onayla </button>
 </form>
 </div>
 <!-- PayPal Withdraw Tab -->
 <div aria-labelledby="paypal-withdraw-tab" class="tab-pane fade" id="paypal-withdraw" role="tabpanel">
 <div class="alert alert-info mb-4">
-<i class="fas fa-info-circle me-2"></i> Entrez l’adresse e-mail associée à votre compte PayPal. La demande de retrait sera traitée dans un délai de 1 à 24 heures.
+<i class="fas fa-info-circle me-2"></i> PayPal hesabınıza bağlı e-posta adresini girin. Talebiniz 1-24 saat içinde işlenir.
                           </div>
 <form id="paypalWithdrawForm">
 <div class="mb-3">
-<label class="form-label" for="paypalWithdrawAmount">Montant à retirer</label>
+<label class="form-label" for="paypalWithdrawAmount">Çekilecek tutar</label>
 <div class="input-group">
-<input class="form-control" name="paypalWithdrawAmount" id="paypalWithdrawAmount" placeholder="Entrez le montant" required="" type="number"/>
+<input class="form-control" name="paypalWithdrawAmount" id="paypalWithdrawAmount" placeholder="Tutarı girin" required="" type="number"/>
 <span class="input-group-text">$</span>
 </div>
-<div class="form-text">Solde disponible : <span class="fw-bold" id="soldedisponible3">--- $</span>
+<div class="form-text">Kullanılabilir bakiye: <span class="fw-bold" id="soldedisponible3">--- $</span>
 </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="paypalEmail">Adresse e-mail PayPal</label>
-<input class="form-control" name="paypalEmail" id="paypalEmail" placeholder="Entrez l’adresse e-mail associée à votre compte PayPal" required="" type="email"/>
+<label class="form-label" for="paypalEmail">PayPal e-posta adresi</label>
+<input class="form-control" name="paypalEmail" id="paypalEmail" placeholder="PayPal hesabınıza bağlı e-posta adresini girin" required="" type="email"/>
 </div>
 <div class="mb-3">
-<label class="form-label" for="paypalEmailConfirm">Confirmation de l’adresse e-mail</label>
-<input class="form-control" name="paypalEmailConfirm" id="paypalEmailConfirm" placeholder="Entrez à nouveau l’adresse e-mail" required="" type="email"/>
+<label class="form-label" for="paypalEmailConfirm">E-posta adresi onayı</label>
+<input class="form-control" name="paypalEmailConfirm" id="paypalEmailConfirm" placeholder="E-posta adresini tekrar girin" required="" type="email"/>
 </div>
 <div class="mb-3 form-check">
 <input class="form-check-input" id="savePaypalInfo" type="checkbox" required/>
-<label class="form-check-label" for="savePaypalInfo"> Enregistrer les informations PayPal pour les transactions futures</label>
+<label class="form-check-label" for="savePaypalInfo"> Gelecekteki işlemler için PayPal bilgilerini kaydet</label>
 </div>
 <button class="btn btn-primary" type="submit">
-<i class="fas fa-paper-plane me-2"></i>Confirmer le retrait </button>
+<i class="fas fa-paper-plane me-2"></i>Para çekimini onayla </button>
 </form>
 </div>
 </div>
@@ -1421,7 +1479,7 @@
 <div class="col-lg-4">
 <div class="card mb-4" id="historiquedesretraitsCard">
 <div class="card-header" id="historiquedesretraitsHeader">
-<i class="fas fa-history me-2"></i> Historique des retraits
+<i class="fas fa-history me-2"></i> Çekim geçmişi
                     </div>
 <div class="card-body">
 <div class="table-responsive">
@@ -1429,9 +1487,9 @@
 <thead>
 <tr>
 <th>ID</th>
-<th>Quantité</th>
-<th>Méthode</th>
-<th>Statut</th>
+<th>Tutar</th>
+<th>Yöntem</th>
+<th>Durum</th>
 </tr>
 </thead>
 <tbody id="historiqueRetraits">
@@ -1442,21 +1500,21 @@
 </div>
 <div class="card">
 <div class="card-header">
-<i class="fas fa-info-circle me-2"></i> Informations de retrait
+<i class="fas fa-info-circle me-2"></i> Çekim bilgileri
                     </div>
 <div class="card-body">
 <ul class="list-group list-group-flush">
-<li class="list-group-item d-flex justify-content-between align-items-center"> Montant minimum de retrait <span class="fw-bold">50 $</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> Minimum çekim tutarı <span class="fw-bold">50 $</span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center"> Montant maximal de retrait <span class="fw-bold">500,000 $</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> Maksimum çekim tutarı <span class="fw-bold">500,000 $</span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center"> Frais de retrait (virement bancaire) <span class="fw-bold">25 $</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> Çekim ücreti (banka havalesi) <span class="fw-bold">25 $</span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center"> Frais de retrait (crypto-monnaies) <span class="fw-bold">1%</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> Çekim ücreti (kripto) <span class="fw-bold">1%</span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center"> Frais de retrait (PayPal) <span class="fw-bold">2%</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> Çekim ücreti (PayPal) <span class="fw-bold">2%</span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center"> Délai de traitement <span class="fw-bold">1 à 3 jours ouvrables</span>
+<li class="list-group-item d-flex justify-content-between align-items-center"> İşlem süresi <span class="fw-bold">1-3 iş günü</span>
 </li>
 </ul>
 </div>
