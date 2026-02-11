@@ -183,6 +183,64 @@
       background: rgba(52, 211, 153, 0.08) !important;
     }
 
+
+
+    body.user-template-scope input[type="file"] {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.26) !important;
+      border-radius: 12px !important;
+      color: #fff !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+      padding: 0.42rem 0.55rem;
+    }
+
+    body.user-template-scope input[type="file"]::file-selector-button {
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.30), rgba(20, 184, 166, 0.24));
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    body.user-template-scope input[type="file"]::file-selector-button:hover {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.44), rgba(20, 184, 166, 0.38));
+      box-shadow: 0 0 0 0.18rem rgba(52, 211, 153, 0.2);
+    }
+
+
+    body.user-template-scope,
+    body.user-template-scope * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.10);
+    }
+
+    body.user-template-scope *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    body.user-template-scope *::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    body.user-template-scope *::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(52, 211, 153, 0.45));
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+    }
+
+    body.user-template-scope *::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(52, 211, 153, 0.62));
+    }
     @keyframes section-fade-up {
       from {
         opacity: 0;
@@ -645,7 +703,7 @@
                     <label class="form-label ms-3 me-2 mb-0" for="chartTheme">Thème :</label>
                     <select class="form-select form-select-sm" id="chartTheme" style="width: auto;">
                       <option value="light">Clair</option>
-                      <option value="dark">Sombre</option>
+                      <option value="dark" selected>Sombre</option>
                     </select>
 </div>
 </div>
@@ -666,7 +724,7 @@
                               "symbol": "BINANCE:BTCUSDT",
                               "interval": "D",
                               "timezone": "Etc/UTC",
-                              "theme": "light",
+                              "theme": "dark",
                               "style": "1",
                               "locale": "en",
                               "allow_symbol_change": true,
@@ -2357,6 +2415,8 @@
           activateTab(sectionId);
         });
       });
+
+      activateInnerTab('bank-tab');
     });
   </script>
   <script>
