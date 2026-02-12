@@ -2411,7 +2411,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const tabLinks = document.querySelectorAll('#sidebar .nav-link[data-section]');
-      const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
+      const tabPanes = document.querySelectorAll('#dashboardContainer > .tab-content > .tab-pane');
 
       const activateInnerTab = (triggerId) => {
         const trigger = document.getElementById(triggerId);
@@ -2459,6 +2459,11 @@
 
       activateInnerTab('bank-tab');
       activateInnerTab('bank-withdraw-tab');
+
+      const infoCompteBancaire = document.getElementById('infoCompteBancaire');
+      if (infoCompteBancaire) {
+        infoCompteBancaire.style.display = 'block';
+      }
     });
   </script>
   <script>
