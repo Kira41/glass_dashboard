@@ -12,13 +12,28 @@
   <link rel="stylesheet" href="style.css"/>
   <style>
     body.user-template-scope {
-      background: #070a12;
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(121, 84, 255, 0.22), transparent 60%),
+        radial-gradient(900px 620px at 85% 88%, rgba(0, 199, 255, 0.18), transparent 58%),
+        linear-gradient(135deg, #05070f 0%, #090f1c 45%, #071422 100%);
       overflow-x: hidden;
+      position: relative;
     }
 
     body.user-template-scope::before,
     body.user-template-scope::after {
-      content: none;
+      content: "";
+      position: fixed;
+      inset: -30px;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(550px 380px at 18% 24%, rgba(142, 108, 255, 0.24), transparent 72%),
+        radial-gradient(520px 340px at 78% 30%, rgba(0, 209, 255, 0.22), transparent 72%),
+        radial-gradient(620px 400px at 52% 78%, rgba(30, 214, 145, 0.16), transparent 70%);
+      filter: blur(44px) saturate(112%);
+      opacity: 0.9;
+      transform: translateZ(0);
     }
 
     body.user-template-scope .background,
@@ -33,6 +48,13 @@
       pointer-events: none;
       perspective: 900px;
       overflow: hidden;
+      filter: blur(5px) saturate(108%);
+      opacity: 0.68;
+    }
+
+    body.user-template-scope :is(.card, .glass-card, .table-wrapper, .table-responsive) {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
     body.user-template-scope .bg-3d::before {
