@@ -2412,6 +2412,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const tabLinks = document.querySelectorAll('#sidebar .nav-link[data-section]');
       const tabPanes = document.querySelectorAll('#dashboardContainer > .tab-content > .tab-pane');
+      const validSections = new Set(Array.from(tabLinks, (link) => link.dataset.section).filter(Boolean));
 
       const activateInnerTab = (triggerId) => {
         const trigger = document.getElementById(triggerId);
@@ -2446,6 +2447,19 @@
         }
       };
 
+      const getSectionFromHash = () => {
+        const sectionFromHash = window.location.hash.replace('#', '').trim();
+        return validSections.has(sectionFromHash) ? sectionFromHash : null;
+      };
+
+      const getInitialSection = () => {
+        return (
+          getSectionFromHash() ||
+          document.querySelector('#sidebar .nav-link.active[data-section]')?.dataset.section ||
+          'dashboard'
+        );
+      };
+
       tabLinks.forEach(link => {
         link.addEventListener('click', (event) => {
           const sectionId = link.dataset.section;
@@ -2454,11 +2468,18 @@
           }
           event.preventDefault();
           activateTab(sectionId);
+          window.history.replaceState(null, '', `#${sectionId}`);
         });
       });
 
-      activateTab('withdraw');
-      activateInnerTab('bank-tab');
+      window.addEventListener('hashchange', () => {
+        const sectionFromHash = getSectionFromHash();
+        if (sectionFromHash) {
+          activateTab(sectionFromHash);
+        }
+      });
+
+      activateTab(getInitialSection());
 
       const infoCompteBancaire = document.getElementById('infoCompteBancaire');
       if (infoCompteBancaire) {
