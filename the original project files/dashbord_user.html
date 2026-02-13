@@ -487,6 +487,108 @@
       width: 100% !important;
     }
 
+    body.user-template-scope #ai-trading .ai-packs-panel {
+      border: 1px solid var(--panel-border);
+      margin-bottom: 1.5rem;
+      padding: clamp(1rem, 2vw, 1.4rem);
+    }
+
+    body.user-template-scope #ai-trading .ai-packs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.85rem;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-radio {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-option {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.95rem;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+      cursor: pointer;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-option:hover {
+      transform: translateY(-3px);
+      border-color: rgba(52, 211, 153, 0.45);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-option.is-selected,
+    body.user-template-scope #ai-trading .ai-pack-option:has(.ai-pack-radio:checked) {
+      border-color: rgba(52, 211, 153, 0.65);
+      background: linear-gradient(145deg, rgba(52, 211, 153, 0.2), rgba(255, 255, 255, 0.08));
+      box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.45), 0 18px 34px rgba(0, 0, 0, 0.28), 0 0 24px rgba(52, 211, 153, 0.22);
+      transform: scale(1.015);
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-price {
+      font-weight: 700;
+      color: #9af8d3;
+      text-shadow: 0 0 12px rgba(52, 211, 153, 0.22);
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-features {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.42rem;
+      font-size: 0.88rem;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    body.user-template-scope #ai-trading .feature-icon {
+      width: 18px;
+      height: 18px;
+      stroke: #8ff7ce;
+      fill: none;
+      stroke-width: 1.8;
+      flex: 0 0 18px;
+      filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.35));
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-cta {
+      margin-top: auto;
+      display: none;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-option.is-selected .ai-pack-cta,
+    body.user-template-scope #ai-trading .ai-pack-option:has(.ai-pack-radio:checked) .ai-pack-cta {
+      display: inline-flex;
+      align-self: flex-start;
+    }
+
+    body.user-template-scope #ai-trading .ai-packs-selection-note {
+      margin-top: 0.75rem;
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
     @media (max-width: 991.98px) {
       body.user-template-scope #ai-trading .ai-trading-tv-host {
         height: 460px;
@@ -2409,6 +2511,99 @@
     <p class="text-muted mb-0">Analysez les marchés en temps réel et basculez rapidement entre listes d’actifs et screeners TradingView.</p>
   </section>
 
+  <section class="card ai-packs-panel" aria-labelledby="aiPackSelectorTitle">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <h3 class="h6 mb-0" id="aiPackSelectorTitle">Sélecteur de Packs</h3>
+      <span class="pack-badge">Choix intelligent</span>
+    </div>
+    <input type="hidden" id="selectedPackValue" value="DE BASE">
+
+    <div class="ai-packs-grid" role="radiogroup" aria-label="Packs AI Trading">
+      <label class="ai-pack-option ai-pack-card is-selected" role="radio" aria-checked="true" tabindex="0">
+        <input class="ai-pack-radio" type="radio" name="aiPack" value="DE BASE" checked>
+        <div class="ai-pack-head">
+          <div>
+            <div class="pack-title">DE BASE</div>
+            <div class="ai-pack-price">$3,000</div>
+          </div>
+          <span class="pack-badge">Starter</span>
+        </div>
+        <ul class="ai-pack-features">
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M3 7h18v10H3z"></path><path d="M7 7V5h10v2"></path></svg>Gestionnaire dédié</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 4l6 6-6 6"></path><path d="M6 20V10"></path></svg>Levier 1:5</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M9 9h6v6H9z"></path></svg>IA Basique</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 16 0"></path><path d="M4 12v4"></path><path d="M20 12v4"></path></svg>Support 24/5</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M8 8h8"></path><path d="M8 16h8"></path></svg>Spread 0,4%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5z"></path><path d="M3 15l9 5 9-5"></path></svg>Marchés limités</li>
+        </ul>
+        <button type="button" class="btn btn-success ai-pack-cta">Commencez maintenant</button>
+      </label>
+
+      <label class="ai-pack-option ai-pack-card" role="radio" aria-checked="false" tabindex="0">
+        <input class="ai-pack-radio" type="radio" name="aiPack" value="SILVER">
+        <div class="ai-pack-head"><div><div class="pack-title">SILVER</div><div class="ai-pack-price">$25,000</div></div><span class="pack-badge">Populaire</span></div>
+        <ul class="ai-pack-features">
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M3 7h18v10H3z"></path><path d="M7 7V5h10v2"></path></svg>Gestionnaire dédié</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 4l6 6-6 6"></path><path d="M6 20V10"></path></svg>Levier 1:10</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M7 12h10"></path><path d="M12 7v10"></path></svg>IA Moyenne</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M3 12h18"></path></svg>Bonus jusqu’à 10%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 16 0"></path><path d="M4 12v4"></path><path d="M20 12v4"></path></svg>Support 24/5</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M8 8h8"></path><path d="M8 16h8"></path></svg>Spread 0,25%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg>Tous les marchés</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M8 9h8"></path><path d="M8 13h5"></path></svg>Webinaires</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"></circle><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6"></path></svg>1 session/mois analyste senior</li>
+        </ul>
+        <button type="button" class="btn btn-success ai-pack-cta">Commencez maintenant</button>
+      </label>
+
+      <label class="ai-pack-option ai-pack-card" role="radio" aria-checked="false" tabindex="0">
+        <input class="ai-pack-radio" type="radio" name="aiPack" value="GOLD">
+        <div class="ai-pack-head"><div><div class="pack-title">GOLD</div><div class="ai-pack-price">$50,000</div></div><span class="pack-badge">Pro</span></div>
+        <ul class="ai-pack-features">
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"></path></svg>Tout SILVER</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 4l6 6-6 6"></path><path d="M6 20V10"></path></svg>Levier 1:20</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M8 8l8 8"></path><path d="M16 8l-8 8"></path></svg>IA Avancée</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M3 12h18"></path></svg>Bonus jusqu’à 20%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M8 8h8"></path><path d="M8 16h8"></path></svg>Spread 0,15%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M3 7h18v10H3z"></path><path d="M12 7v10"></path></svg>Compte géré</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"></circle><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6"></path></svg>2 sessions/mois analyste senior</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 17l5-5 4 4 7-8"></path></svg>Arbitrage</li>
+        </ul>
+        <button type="button" class="btn btn-success ai-pack-cta">Commencez maintenant</button>
+      </label>
+
+      <label class="ai-pack-option ai-pack-card" role="radio" aria-checked="false" tabindex="0">
+        <input class="ai-pack-radio" type="radio" name="aiPack" value="PLATINE">
+        <div class="ai-pack-head"><div><div class="pack-title">PLATINE</div><div class="ai-pack-price">$100,000</div></div><span class="pack-badge">Élite</span></div>
+        <ul class="ai-pack-features">
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"></path></svg>Tout GOLD</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 4l6 6-6 6"></path><path d="M6 20V10"></path></svg>Levier 1:50</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"></path></svg>IA Premium</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M3 12h18"></path></svg>Bonus jusqu’à 25%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M8 8h8"></path><path d="M8 16h8"></path></svg>Spread 0,1%</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"></circle><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6"></path></svg>1 session/sem analyste senior</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M4 8h16"></path><path d="M7 8v9h10V8"></path><path d="M10 17v3h4v-3"></path></svg>Événements exclusifs</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M8 21h8"></path><path d="M12 3v18"></path><path d="M6 7h12"></path></svg>Plan retraite</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M15 8l4 4-4 4"></path><path d="M9 8l-4 4 4 4"></path></svg>Aucun frais retrait</li>
+        </ul>
+        <button type="button" class="btn btn-success ai-pack-cta">Commencez maintenant</button>
+      </label>
+
+      <label class="ai-pack-option ai-pack-card" role="radio" aria-checked="false" tabindex="0">
+        <input class="ai-pack-radio" type="radio" name="aiPack" value="VIP">
+        <div class="ai-pack-head"><div><div class="pack-title">VIP</div><div class="ai-pack-price">$500,000</div></div><span class="pack-badge">Ultra</span></div>
+        <ul class="ai-pack-features">
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"></path></svg>Tout Platine</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.4-3 8.5-7 9-4-0.5-7-4.6-7-9V7z"></path></svg>Assurance transactions</li>
+          <li><svg class="feature-icon" viewBox="0 0 24 24"><path d="M6 4h12v16H6z"></path><path d="M9 9h6"></path><path d="M9 13h6"></path><path d="M9 17h3"></path></svg>Demandes personnalisées (à discuter)</li>
+        </ul>
+        <button type="button" class="btn btn-success ai-pack-cta">Commencez maintenant</button>
+      </label>
+    </div>
+
+    <p class="ai-packs-selection-note mb-0">Pack sélectionné : <strong id="selectedPackLabel">DE BASE</strong></p>
+  </section>
+
   <section class="card ai-trading-panel" aria-labelledby="aiTradingPanelTitle">
     <div class="card-header ai-trading-panel-header">
       <div class="ai-trading-panel-brand">
@@ -2446,6 +2641,77 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const packCards = Array.from(document.querySelectorAll('#ai-trading .ai-pack-option'));
+      const packRadios = Array.from(document.querySelectorAll('#ai-trading .ai-pack-radio'));
+      const selectedPackInput = document.getElementById('selectedPackValue');
+      const selectedPackLabel = document.getElementById('selectedPackLabel');
+
+      if (!packCards.length || !packRadios.length) {
+        return;
+      }
+
+      const setSelectedPack = (nextValue) => {
+        packCards.forEach((card) => {
+          const radio = card.querySelector('.ai-pack-radio');
+          const isActive = !!radio && radio.value === nextValue;
+          card.classList.toggle('is-selected', isActive);
+          card.setAttribute('aria-checked', String(isActive));
+          if (radio) {
+            radio.checked = isActive;
+          }
+        });
+
+        if (selectedPackInput) {
+          selectedPackInput.value = nextValue;
+        }
+
+        if (selectedPackLabel) {
+          selectedPackLabel.textContent = nextValue;
+        }
+      };
+
+      packRadios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          if (radio.checked) {
+            setSelectedPack(radio.value);
+          }
+        });
+      });
+
+      packCards.forEach((card) => {
+        card.addEventListener('keydown', (event) => {
+          const currentIndex = packCards.indexOf(card);
+          let targetIndex = -1;
+
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+            targetIndex = (currentIndex + 1) % packCards.length;
+          }
+
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            targetIndex = (currentIndex - 1 + packCards.length) % packCards.length;
+          }
+
+          if (targetIndex >= 0) {
+            event.preventDefault();
+            const targetRadio = packCards[targetIndex].querySelector('.ai-pack-radio');
+            if (targetRadio) {
+              targetRadio.checked = true;
+              targetRadio.dispatchEvent(new Event('change', { bubbles: true }));
+              packCards[targetIndex].focus();
+            }
+          }
+        });
+      });
+
+      const defaultRadio = packRadios.find((radio) => radio.checked) || packRadios[0];
+      if (defaultRadio) {
+        setSelectedPack(defaultRadio.value);
+      }
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const scene = document.getElementById('bg3dScene');
