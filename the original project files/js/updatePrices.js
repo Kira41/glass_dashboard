@@ -397,54 +397,175 @@ function initAiTradingPanel() {
     const PRESETS = {
         cryptoList: makeMarketQuotesPreset('Crypto', [
             {
-                name: 'Majors',
+                name: 'Crypto',
                 symbols: [
                     { name: 'COINBASE:BTCUSD', displayName: 'BTC/USD' },
                     { name: 'COINBASE:ETHUSD', displayName: 'ETH/USD' },
+                    { name: 'COINBASE:USDTUSD', displayName: 'USDT/USD' },
                     { name: 'BINANCE:BNBUSDT', displayName: 'BNB/USD' },
-                    { name: 'BINANCE:SOLUSDT', displayName: 'SOL/USD' }
+                    { name: 'BITSTAMP:USDCUSD', displayName: 'USDC/USD' },
+                    { name: 'BINANCE:XRPUSDT', displayName: 'XRP/USD' },
+                    { name: 'BINANCE:ADAUSDT', displayName: 'ADA/USD' },
+                    { name: 'BINANCE:DOGEUSDT', displayName: 'DOGE/USD' },
+                    { name: 'SKILLING:MATICUSD', displayName: 'MATIC/USD' },
+                    { name: 'BINANCE:SOLUSDT', displayName: 'SOL/USD' },
+                    { name: 'BINANCE:DOTUSDT', displayName: 'DOT/USD' },
+                    { name: 'BINANCE:SHIBUSDT', displayName: 'SHIB/USD' },
+                    { name: 'BINANCE:AVAXUSDT', displayName: 'AVAX/USD' },
+                    { name: 'BINANCE:LUNAUSDT', displayName: 'LUNA/USD' },
+                    { name: 'BINANCE:LTCUSDT', displayName: 'LTC/USD' },
+                    { name: 'BINANCE:LINKUSDT', displayName: 'LINK/USD' },
+                    { name: 'BINANCE:UNIUSDT', displayName: 'UNI/USD' },
+                    { name: 'BINANCE:ALGOUSDT', displayName: 'ALGO/USD' },
+                    { name: 'BINANCE:XLMUSDT', displayName: 'XLM/USD' },
+                    { name: 'BINANCE:VETUSDT', displayName: 'VET/USD' },
+                    { name: 'BINANCE:ICPUSDT', displayName: 'ICP/USD' },
+                    { name: 'BINANCE:ATOMUSDT', displayName: 'ATOM/USD' },
+                    { name: 'BINANCE:FILUSDT', displayName: 'FIL/USD' },
+                    { name: 'BINANCE:TRXUSDT', displayName: 'TRX/USD' },
+                    { name: 'BINANCE:XTZUSDT', displayName: 'XTZ/USD' },
+                    { name: 'BINANCE:THETAUSDT', displayName: 'THETA/USD' },
+                    { name: 'BINANCE:FTTUSDT', displayName: 'FTT/USD' },
+                    { name: 'ACTIVTRADES:EOSUSD', displayName: 'EOS/USD' },
+                    { name: 'BINANCE:HBARUSDT', displayName: 'HBAR/USD' },
+                    { name: 'BINANCE:IOTAUSDT', displayName: 'IOTA/USD' },
+                    { name: 'BINANCE:BCHUSDT', displayName: 'BCH/USD' },
+                    { name: 'BINANCE:NEOUSDT', displayName: 'NEO/USD' },
+                    { name: 'BINANCE:EGLDUSDT', displayName: 'EGLD/USD' },
+                    { name: 'BINANCE:ZECUSDT', displayName: 'ZEC/USD' },
+                    { name: 'BINANCE:CAKEUSDT', displayName: 'CAKE/USD' },
+                    { name: 'BINANCE:ONEUSDT', displayName: 'ONE/USD' },
+                    { name: 'BINANCE:MANAUSDT', displayName: 'MANA/USD' },
+                    { name: 'BINANCE:ENJUSDT', displayName: 'ENJ/USD' },
+                    { name: 'BINANCE:AAVEUSDT', displayName: 'AAVE/USD' },
+                    { name: 'BITMEX:BMKR', displayName: 'MKR/USD' },
+                    { name: 'BINANCE:SNXUSDT', displayName: 'SNX/USD' },
+                    { name: 'BINANCE:COMPUSDT', displayName: 'COMP/USD' },
+                    { name: 'BINANCE:SUSHIUSDT', displayName: 'SUSHI/USD' },
+                    { name: 'POLONIEX:HTUSDT', displayName: 'HT/USD' },
+                    { name: 'UPBIT:TIAUSDT', displayName: 'CEL/USD' },
+                    { name: 'POLONIEX:OKBUSDT', displayName: 'OKB/USD' },
+                    { name: 'BLUEBERRY:WAVUSD', displayName: 'WAVES/USD' },
+                    { name: 'BITMART:SGCUSDT', displayName: 'SGC/USD' }
                 ]
             }
         ], LOCALE, THEME),
         stocksList: makeMarketQuotesPreset('Stocks', [
             {
-                name: 'US Large / Tech',
+                name: 'Stocks',
                 symbols: [
                     { name: 'NASDAQ:AAPL', displayName: 'Apple (AAPL)' },
                     { name: 'NASDAQ:MSFT', displayName: 'Microsoft (MSFT)' },
+                    { name: 'NASDAQ:AMZN', displayName: 'Amazon (AMZN)' },
+                    { name: 'NASDAQ:TSLA', displayName: 'Tesla (TSLA)' },
+                    { name: 'NASDAQ:GOOGL', displayName: 'Alphabet (GOOGL)' },
+                    { name: 'NASDAQ:META', displayName: 'Meta Platforms (META)' },
                     { name: 'NASDAQ:NVDA', displayName: 'Nvidia (NVDA)' },
-                    { name: 'NASDAQ:TSLA', displayName: 'Tesla (TSLA)' }
+                    { name: 'NYSE:BRK.B', displayName: 'Berkshire Hathaway (BRK.B)' },
+                    { name: 'NYSE:JPM', displayName: 'JPMorgan Chase (JPM)' },
+                    { name: 'NYSE:JNJ', displayName: 'Johnson & Johnson (JNJ)' },
+                    { name: 'NYSE:V', displayName: 'Visa (V)' },
+                    { name: 'NYSE:MA', displayName: 'Mastercard (MA)' },
+                    { name: 'NYSE:PG', displayName: 'Procter & Gamble (PG)' },
+                    { name: 'NYSE:KO', displayName: 'Coca-Cola (KO)' },
+                    { name: 'NASDAQ:PEP', displayName: 'PepsiCo (PEP)' },
+                    { name: 'NASDAQ:INTC', displayName: 'Intel (INTC)' },
+                    { name: 'NASDAQ:CSCO', displayName: 'Cisco (CSCO)' },
+                    { name: 'NASDAQ:WMT', displayName: 'Walmart (WMT)' },
+                    { name: 'NYSE:XOM', displayName: 'ExxonMobil (XOM)' },
+                    { name: 'NYSE:CVX', displayName: 'Chevron (CVX)' },
+                    { name: 'NYSE:DIS', displayName: 'Disney (DIS)' },
+                    { name: 'NYSE:NKE', displayName: 'Nike (NKE)' },
+                    { name: 'NYSE:MCD', displayName: 'McDonald’s (MCD)' },
+                    { name: 'NYSE:PFE', displayName: 'Pfizer (PFE)' },
+                    { name: 'NASDAQ:MRNA', displayName: 'Moderna (MRNA)' },
+                    { name: 'NYSE:ABBV', displayName: 'AbbVie (ABBV)' },
+                    { name: 'NYSE:CRM', displayName: 'Salesforce (CRM)' },
+                    { name: 'NASDAQ:ADBE', displayName: 'Adobe (ADBE)' },
+                    { name: 'NYSE:ORCL', displayName: 'Oracle (ORCL)' },
+                    { name: 'NYSE:T', displayName: 'AT&T (T)' },
+                    { name: 'NYSE:VZ', displayName: 'Verizon (VZ)' },
+                    { name: 'NYSE:BA', displayName: 'Boeing (BA)' },
+                    { name: 'NYSE:CAT', displayName: 'Caterpillar (CAT)' },
+                    { name: 'NASDAQ:HON', displayName: 'Honeywell (HON)' },
+                    { name: 'NYSE:LMT', displayName: 'Lockheed Martin (LMT)' },
+                    { name: 'NASDAQ:SBUX', displayName: 'Starbucks (SBUX)' },
+                    { name: 'NYSE:GE', displayName: 'General Electric (GE)' },
+                    { name: 'NYSE:IBM', displayName: 'IBM (IBM)' },
+                    { name: 'NYSE:SHEL', displayName: 'Shell (SHEL)' },
+                    { name: 'NYSE:BP', displayName: 'BP (BP)' },
+                    { name: 'NYSE:TTE', displayName: 'TotalEnergies (TTE)' },
+                    { name: 'OTC:SIEGY', displayName: 'Siemens (SIEGY)' },
+                    { name: 'NYSE:SAP', displayName: 'SAP (SAP)' },
+                    { name: 'OTC:VWAGY', displayName: 'Volkswagen (VWAGY)' },
+                    { name: 'BSE:BMW', displayName: 'BMW (BMWYY)' },
+                    { name: 'NYSE:TM', displayName: 'Toyota (TM)' },
+                    { name: 'NYSE:SONY', displayName: 'Sony (SONY)' },
+                    { name: 'OTC:SSNLF', displayName: 'Samsung Electronics (SSNLF)' },
+                    { name: 'NYSE:BABA', displayName: 'Alibaba (BABA)' },
+                    { name: 'OTC:TCEHY', displayName: 'Tencent (TCEHY)' },
+                    { name: 'NASDAQ:PYPL', displayName: 'PayPal (PYPL)' }
                 ]
             }
         ], LOCALE, THEME),
         forexList: makeMarketQuotesPreset('Forex', [
             {
-                name: 'Major',
+                name: 'Forex',
                 symbols: [
-                    { name: 'FX_IDC:EURUSD', displayName: 'EUR/USD' },
+                    { name: 'FX_IDC:EURUSD', displayName: 'USD/EUR' },
                     { name: 'FX_IDC:USDJPY', displayName: 'USD/JPY' },
-                    { name: 'FX_IDC:GBPUSD', displayName: 'GBP/USD' },
-                    { name: 'FX_IDC:USDCHF', displayName: 'USD/CHF' }
+                    { name: 'FX_IDC:GBPUSD', displayName: 'USD/GBP' },
+                    { name: 'FX_IDC:USDCHF', displayName: 'USD/CHF' },
+                    { name: 'FX_IDC:USDCAD', displayName: 'USD/CAD' },
+                    { name: 'FX_IDC:AUDUSD', displayName: 'AUD/USD' },
+                    { name: 'FX_IDC:NZDUSD', displayName: 'NZD/USD' },
+                    { name: 'FX_IDC:EURGBP', displayName: 'EUR/GBP' },
+                    { name: 'FX_IDC:EURJPY', displayName: 'EUR/JPY' },
+                    { name: 'FX_IDC:GBPJPY', displayName: 'GBP/JPY' }
                 ]
             }
         ], LOCALE, THEME),
         indicesList: makeMarketQuotesPreset('Indices', [
             {
-                name: 'US',
+                name: 'Indices',
                 symbols: [
                     { name: 'FOREXCOM:SPXUSD', displayName: 'S&P 500' },
-                    { name: 'FOREXCOM:DJI', displayName: 'Dow Jones (DJIA)' },
-                    { name: 'FOREXCOM:NSXUSD', displayName: 'Nasdaq 100' }
+                    { name: 'FOREXCOM:DJI', displayName: 'Dow Jones Industrial Average (DJIA)' },
+                    { name: 'FOREXCOM:NSXUSD', displayName: 'Nasdaq 100' },
+                    { name: 'FOREXCOM:UKXGBP', displayName: 'FTSE 100' },
+                    { name: 'INDEX:DEU40', displayName: 'DAX 30' },
+                    { name: 'INDEX:CAC40', displayName: 'CAC 40' },
+                    { name: 'INDEX:NKY', displayName: 'Nikkei 225' },
+                    { name: 'INDEX:HSI', displayName: 'Hang Seng' },
+                    { name: 'SSE:000001', displayName: 'Shanghai Composite' },
+                    { name: 'FOREXCOM:US2000', displayName: 'Russell 2000' }
                 ]
             }
         ], LOCALE, THEME),
         commoditiesList: makeMarketQuotesPreset('Commodities', [
             {
-                name: 'Metals',
+                name: 'Commodities',
                 symbols: [
                     { name: 'CMCMARKETS:GOLD', displayName: 'Gold/USD' },
                     { name: 'CMCMARKETS:SILVER', displayName: 'Silver/USD' },
-                    { name: 'CMCMARKETS:COPPER', displayName: 'Copper/USD' }
+                    { name: 'CMCMARKETS:PLATINUM', displayName: 'Platinum/USD' },
+                    { name: 'CMCMARKETS:COPPER', displayName: 'Copper/USD' },
+                    { name: 'TVC:USOIL', displayName: 'Crude Oil – WTI/USD' },
+                    { name: 'TVC:UKOIL', displayName: 'Crude Oil – Brent/USD' },
+                    { name: 'SKILLING:NATGAS', displayName: 'Natural Gas/USD' },
+                    { name: 'AMEX:COAL', displayName: 'Coal/USD' },
+                    { name: 'FUSIONMARKETS:XALUSD', displayName: 'Aluminum/USD' },
+                    { name: 'EIGHTCAP:XNIUSD', displayName: 'Nickel/USD' },
+                    { name: 'FUSIONMARKETS:XZNUSD', displayName: 'Zinc/USD' },
+                    { name: 'FUSIONMARKETS:XPBUSD', displayName: 'Lead/USD' },
+                    { name: 'CAPITALCOM:TSI', displayName: 'Iron Ore/USD' },
+                    { name: 'SKILLING:WHEAT', displayName: 'Wheat/USD' },
+                    { name: 'SKILLING:CORN', displayName: 'Corn/USD' },
+                    { name: 'SKILLING:SOYBEAN', displayName: 'Soybeans/USD' },
+                    { name: 'SKILLING:COFFEE', displayName: 'Coffee/USD' },
+                    { name: 'SKILLING:COCOA', displayName: 'Cocoa/USD' },
+                    { name: 'SKILLING:SUGAR', displayName: 'Sugar/USD' },
+                    { name: 'SKILLING:COTTON', displayName: 'Cotton/USD' }
                 ]
             }
         ], LOCALE, THEME),
