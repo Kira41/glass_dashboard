@@ -140,7 +140,7 @@
     body.user-template-scope #withdraw,
     body.user-template-scope #trading,
     body.user-template-scope #kyc,
-    body.user-template-scope #offers {
+    body.user-template-scope #ai-trading {
       color: #fff;
     }
 
@@ -148,11 +148,11 @@
     body.user-template-scope #withdraw :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
     body.user-template-scope #trading :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
     body.user-template-scope #kyc :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted),
-    body.user-template-scope #offers :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted) {
+    body.user-template-scope #ai-trading :is(h1, h2, h3, h4, h5, h6, p, span, label, th, td, li, small, .form-text, .text-muted) {
       color: #fff !important;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea, .input-group-text) {
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) :is(.form-control, .form-select, textarea, .input-group-text) {
       background: rgba(255, 255, 255, 0.08) !important;
       border: 1px solid rgba(255, 255, 255, 0.22) !important;
       border-radius: 12px !important;
@@ -161,36 +161,113 @@
       transition: all 0.2s ease;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea)::placeholder {
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) :is(.form-control, .form-select, textarea)::placeholder {
       color: rgba(255, 255, 255, 0.72) !important;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) :is(.form-control, .form-select, textarea):focus {
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) :is(.form-control, .form-select, textarea):focus {
       border-color: #34d399 !important;
       box-shadow: 0 0 0 0.2rem rgba(52, 211, 153, 0.2) !important;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .nav-tabs .nav-link {
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) .nav-tabs .nav-link {
       color: rgba(255, 255, 255, 0.9) !important;
       border-radius: 10px;
       border: 1px solid transparent;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .nav-tabs .nav-link.active {
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) .nav-tabs .nav-link.active {
       color: #34d399 !important;
       border-color: rgba(52, 211, 153, 0.45) !important;
       background: rgba(52, 211, 153, 0.1) !important;
     }
 
-    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #offers) .card-header i,
+    body.user-template-scope :is(#deposit, #withdraw, #trading, #kyc, #ai-trading) .card-header i,
     body.user-template-scope .nav-link[data-section="deposit"] .nav-icon,
     body.user-template-scope .nav-link[data-section="withdraw"] .nav-icon,
     body.user-template-scope .nav-link[data-section="trading"] .nav-icon,
     body.user-template-scope .nav-link[data-section="kyc"] .nav-icon,
-    body.user-template-scope .nav-link[data-section="offers"] .nav-icon {
+    body.user-template-scope .nav-link[data-section="ai-trading"] .nav-icon {
       color: #34d399 !important;
       stroke: #34d399 !important;
       filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-hero {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      padding: clamp(1.25rem, 2.2vw, 2rem);
+      margin-bottom: 1.5rem;
+    }
+
+    body.user-template-scope #ai-trading .ai-hero-disclaimer {
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.8) !important;
+      border-left: 2px solid rgba(52, 211, 153, 0.65);
+      padding-left: 0.75rem;
+      margin-bottom: 0;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    body.user-template-scope #ai-trading .ai-pack-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+
+    body.user-template-scope #ai-trading .pack-badge {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(52, 211, 153, 0.17);
+      color: #7ef3c3;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      border-radius: 999px;
+      padding: 0.22rem 0.58rem;
+    }
+
+    body.user-template-scope #ai-trading .pack-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    body.user-template-scope #ai-trading .icon-shell {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.08);
+      margin-right: 0.65rem;
+    }
+
+    body.user-template-scope #ai-trading .how-it-works .step-item {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 1rem;
+      height: 100%;
+    }
+
+    body.user-template-scope #ai-trading .how-it-works .step-index {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+      background: rgba(52, 211, 153, 0.22);
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      color: #8ff7ce;
     }
 
     body.user-template-scope #trading #historiqueTrading,
@@ -458,12 +535,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-section="offers" href="#offers">
+              <a class="nav-link" data-section="ai-trading" href="#ai-trading">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="3"/>
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                 </svg>
-                Other
+                AI Trading
               </a>
             </li>
           </ul>
@@ -2243,91 +2320,127 @@
 </div>
 </form>
 </div>
-<div class="tab-pane fade" id="offers">
-  <h2 class="mb-2">Plans & Packages</h2>
-  <p class="text-muted mb-4">Choisissez le plan qui correspond à vos objectifs de trading. Chaque formule comprend un support prioritaire et un accès aux insights du marché.</p>
+<div class="tab-pane fade" id="ai-trading">
+  <section class="ai-trading-hero" aria-labelledby="aiTradingTitle">
+    <h2 class="mb-2" id="aiTradingTitle">AI Trading</h2>
+    <p class="text-muted mb-2">Activez un trader IA qui exécute des stratégies automatisées pour viser une croissance potentielle, tout en gardant vos paramètres de risque sous contrôle.</p>
+    <p class="ai-hero-disclaimer">Aucun rendement n'est garanti. Les informations fournies ne constituent pas un conseil financier.</p>
+  </section>
   <div class="row g-4">
     <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm ai-pack-card">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <div>
-            <i class="fas fa-seedling me-2 text-success"></i>
-            Starter Plan
+          <div class="d-flex align-items-center">
+            <span class="icon-shell" aria-hidden="true"><i class="fas fa-seedling text-success"></i></span>
+            <span class="pack-title">Starter AI</span>
           </div>
-          <span class="status-badge completed">Starter</span>
+          <span class="pack-badge">Nouveau</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
             <div class="display-6 fw-bold text-primary">$19</div>
             <span class="text-muted ms-2">/mo</span>
           </div>
-          <p class="text-muted small">Idéal pour démarrer avec les essentiels du trading.</p>
+          <p class="text-muted small mb-0">Une automatisation simple pour lancer votre trader IA avec des garde-fous essentiels.</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Spot trading access</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Real-time alerts</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Email support</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Risk controls de base (stop-loss & limites)</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA essentiels sur marchés majeurs</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance hebdomadaire du portefeuille</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapport de performance mensuel</li>
         </ul>
         <div class="card-body">
-          <a class="btn btn-outline-primary w-100" href="contact.html">Get Started</a>
+          <a aria-label="Activer le pack Starter AI" class="btn btn-outline-primary w-100" href="contact.html">Activer Starter AI</a>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm border-primary">
+      <div class="card h-100 shadow-sm border-primary ai-pack-card">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <div>
-            <i class="fas fa-bolt me-2 text-primary"></i>
-            Pro Package
+          <div class="d-flex align-items-center">
+            <span class="icon-shell" aria-hidden="true"><i class="fas fa-bolt text-primary"></i></span>
+            <span class="pack-title">Pro AI</span>
           </div>
-          <span class="status-badge processing">Recommandé</span>
+          <span class="pack-badge">Most Popular</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
             <div class="display-6 fw-bold text-primary">$49</div>
             <span class="text-muted ms-2">/mo</span>
           </div>
-          <p class="text-muted small">Pensé pour accélérer vos performances et gagner du temps.</p>
+          <p class="text-muted small mb-0">Votre IA exécute des stratégies plus dynamiques pour optimiser le temps d'exposition du capital.</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Advanced charts</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Portfolio insights</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Priority chat support</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Risk controls avancés + drawdown guard</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA multi-actifs en temps réel</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance quotidien</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapports hebdomadaires & alertes prioritaires</li>
         </ul>
         <div class="card-body">
-          <a class="btn btn-primary w-100" href="contact.html">Choose Pro</a>
+          <a aria-label="Choisir le pack Pro AI" class="btn btn-primary w-100" href="contact.html">Choisir Pro AI</a>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm ai-pack-card">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <div>
-            <i class="fas fa-crown me-2 text-warning"></i>
-            Premium Suite
+          <div class="d-flex align-items-center">
+            <span class="icon-shell" aria-hidden="true"><i class="fas fa-crown text-warning"></i></span>
+            <span class="pack-title">Elite AI</span>
           </div>
-          <span class="status-badge pending">Premium</span>
+          <span class="pack-badge">Best Value</span>
         </div>
         <div class="card-body">
           <div class="d-flex align-items-end mb-3">
             <div class="display-6 fw-bold text-primary">$99</div>
             <span class="text-muted ms-2">/mo</span>
           </div>
-          <p class="text-muted small">Le choix premium avec un accompagnement personnalisé.</p>
+          <p class="text-muted small mb-0">Un trader IA premium avec automatisation continue et suivi détaillé orienté performance durable.</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Dedicated advisor</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-trading tools</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>24/7 VIP support</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Moteur IA avec filtres de volatilité avancés</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance intelligent intraday</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA premium + scénarios adaptatifs</li>
+          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapports complets et support VIP 24/7</li>
         </ul>
         <div class="card-body">
-          <a class="btn btn-outline-primary w-100" href="contact.html">Join Premium</a>
+          <a aria-label="Passer au pack Elite AI" class="btn btn-outline-primary w-100" href="contact.html">Passer à Elite AI</a>
         </div>
       </div>
     </div>
   </div>
+
+  <section class="card mt-4 how-it-works" aria-labelledby="howAiTradingWorks">
+    <div class="card-body">
+      <h3 class="h5 mb-3" id="howAiTradingWorks">How it works</h3>
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <article class="step-item">
+            <span class="step-index">1</span>
+            <h4 class="h6">Configurez votre profil</h4>
+            <p class="small text-muted mb-0">Définissez vos objectifs, niveaux de risque et actifs préférés en quelques clics.</p>
+          </article>
+        </div>
+        <div class="col-12 col-md-4">
+          <article class="step-item">
+            <span class="step-index">2</span>
+            <h4 class="h6">L'IA exécute automatiquement</h4>
+            <p class="small text-muted mb-0">Le moteur ajuste les positions via des signaux de marché et des règles de protection intégrées.</p>
+          </article>
+        </div>
+        <div class="col-12 col-md-4">
+          <article class="step-item">
+            <span class="step-index">3</span>
+            <h4 class="h6">Suivez et ajustez</h4>
+            <p class="small text-muted mb-0">Recevez des rapports clairs et adaptez votre stratégie pour soutenir votre potentiel de croissance.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 </div>
       </div>
     </main>
