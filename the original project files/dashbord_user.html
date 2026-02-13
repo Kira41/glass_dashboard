@@ -2416,19 +2416,19 @@
         <h3 class="h6 mb-0" id="aiTradingPanelTitle">TradingView — AI Trading</h3>
       </div>
       <div class="ai-trading-tabs" id="aiTradingTabs" role="tablist" aria-label="AI Trading presets">
-        <button type="button" class="ai-tab-btn active" data-ai-preset="cryptoList">Crypto</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="stocksList">Stocks</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="forexList">Forex</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="indicesList">Indices</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="commoditiesList">Commodities</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="cryptoScreener">Screener (Crypto)</button>
-        <button type="button" class="ai-tab-btn" data-ai-preset="forexScreener">Screener (Forex)</button>
+        <button type="button" class="ai-tab-btn active" data-ai-preset="cryptoScreener" aria-selected="true">Screener (Crypto)</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="cryptoList" aria-selected="false">Crypto</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="stocksList" aria-selected="false">Stocks</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="forexList" aria-selected="false">Forex</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="indicesList" aria-selected="false">Indices</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="commoditiesList" aria-selected="false">Commodities</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="forexScreener" aria-selected="false">Screener (Forex)</button>
       </div>
     </div>
 
     <div class="card-body p-0">
       <div class="ai-trading-subhead">
-        <strong id="aiTradingPageTitle">Crypto</strong>
+        <strong id="aiTradingPageTitle">Screener — Crypto</strong>
         <span class="text-muted">Si l'arabe ne s'affiche pas correctement dans le widget, changez la locale en "en".</span>
       </div>
       <div id="aiTradingTvHost" class="ai-trading-tv-host"></div>

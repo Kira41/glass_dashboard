@@ -604,7 +604,7 @@ function initAiTradingPanel() {
     };
 
     const loadPreset = (key) => {
-        const preset = PRESETS[key] || PRESETS.cryptoList;
+        const preset = PRESETS[key] || PRESETS.cryptoScreener;
         title.textContent = preset.title;
         mountTradingViewEmbed(host, preset);
     };
@@ -615,12 +615,13 @@ function initAiTradingPanel() {
 
         tabs.querySelectorAll('button[data-ai-preset]').forEach((button) => {
             button.classList.toggle('active', button === btn);
+            button.setAttribute('aria-selected', String(button === btn));
         });
 
         loadPreset(btn.dataset.aiPreset);
     });
 
-    loadPreset('cryptoList');
+    loadPreset('cryptoScreener');
 }
 
 function showBootstrapAlert(containerId, message, type = 'success') {
