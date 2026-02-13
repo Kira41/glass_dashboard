@@ -411,6 +411,89 @@
         animation: none !important;
       }
     }
+  
+
+    body.user-template-scope #ai-trading .ai-trading-panel {
+      border: 1px solid var(--panel-border);
+      overflow: hidden;
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--panel-border);
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-panel-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-panel-brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 14px rgba(52, 211, 153, 0.55);
+      display: inline-block;
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    body.user-template-scope #ai-trading .ai-tab-btn {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-radius: 12px;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      line-height: 1.2;
+    }
+
+    body.user-template-scope #ai-trading .ai-tab-btn.active {
+      border-color: rgba(52, 211, 153, 0.6);
+      background: rgba(52, 211, 153, 0.14);
+      color: #9af8d3;
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-subhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--panel-border);
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-tv-host {
+      height: 500px;
+      min-height: 500px;
+      width: 100%;
+    }
+
+    body.user-template-scope #ai-trading .ai-trading-tv-host .tradingview-widget-container,
+    body.user-template-scope #ai-trading .ai-trading-tv-host .tradingview-widget-container__widget {
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    @media (max-width: 991.98px) {
+      body.user-template-scope #ai-trading .ai-trading-tv-host {
+        height: 460px;
+        min-height: 460px;
+      }
+    }
+
   </style>
 </head>
 <body class="user-template-scope">
@@ -2323,123 +2406,35 @@
 <div class="tab-pane fade" id="ai-trading">
   <section class="ai-trading-hero" aria-labelledby="aiTradingTitle">
     <h2 class="mb-2" id="aiTradingTitle">AI Trading</h2>
-    <p class="text-muted mb-2">Activez un trader IA qui exécute des stratégies automatisées pour viser une croissance potentielle, tout en gardant vos paramètres de risque sous contrôle.</p>
-    <p class="ai-hero-disclaimer">Aucun rendement n'est garanti. Les informations fournies ne constituent pas un conseil financier.</p>
+    <p class="text-muted mb-0">Analysez les marchés en temps réel et basculez rapidement entre listes d’actifs et screeners TradingView.</p>
   </section>
-  <div class="row g-4">
-    <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm ai-pack-card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            <span class="icon-shell" aria-hidden="true"><i class="fas fa-seedling text-success"></i></span>
-            <span class="pack-title">Starter AI</span>
-          </div>
-          <span class="pack-badge">Nouveau</span>
-        </div>
-        <div class="card-body">
-          <div class="d-flex align-items-end mb-3">
-            <div class="display-6 fw-bold text-primary">$19</div>
-            <span class="text-muted ms-2">/mo</span>
-          </div>
-          <p class="text-muted small mb-0">Une automatisation simple pour lancer votre trader IA avec des garde-fous essentiels.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Risk controls de base (stop-loss & limites)</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA essentiels sur marchés majeurs</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance hebdomadaire du portefeuille</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapport de performance mensuel</li>
-        </ul>
-        <div class="card-body">
-          <a aria-label="Activer le pack Starter AI" class="btn btn-outline-primary w-100" href="contact.html">Activer Starter AI</a>
-        </div>
+
+  <section class="card ai-trading-panel" aria-labelledby="aiTradingPanelTitle">
+    <div class="card-header ai-trading-panel-header">
+      <div class="ai-trading-panel-brand">
+        <span class="dot" aria-hidden="true"></span>
+        <h3 class="h6 mb-0" id="aiTradingPanelTitle">TradingView — AI Trading</h3>
+      </div>
+      <div class="ai-trading-tabs" id="aiTradingTabs" role="tablist" aria-label="AI Trading presets">
+        <button type="button" class="ai-tab-btn active" data-ai-preset="cryptoList">Crypto</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="stocksList">Stocks</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="forexList">Forex</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="indicesList">Indices</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="commoditiesList">Commodities</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="cryptoScreener">Screener (Crypto)</button>
+        <button type="button" class="ai-tab-btn" data-ai-preset="forexScreener">Screener (Forex)</button>
       </div>
     </div>
 
-    <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm border-primary ai-pack-card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            <span class="icon-shell" aria-hidden="true"><i class="fas fa-bolt text-primary"></i></span>
-            <span class="pack-title">Pro AI</span>
-          </div>
-          <span class="pack-badge">Most Popular</span>
-        </div>
-        <div class="card-body">
-          <div class="d-flex align-items-end mb-3">
-            <div class="display-6 fw-bold text-primary">$49</div>
-            <span class="text-muted ms-2">/mo</span>
-          </div>
-          <p class="text-muted small mb-0">Votre IA exécute des stratégies plus dynamiques pour optimiser le temps d'exposition du capital.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Risk controls avancés + drawdown guard</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA multi-actifs en temps réel</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance quotidien</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapports hebdomadaires & alertes prioritaires</li>
-        </ul>
-        <div class="card-body">
-          <a aria-label="Choisir le pack Pro AI" class="btn btn-primary w-100" href="contact.html">Choisir Pro AI</a>
-        </div>
+    <div class="card-body p-0">
+      <div class="ai-trading-subhead">
+        <strong id="aiTradingPageTitle">Crypto</strong>
+        <span class="text-muted">Si l'arabe ne s'affiche pas correctement dans le widget, changez la locale en "en".</span>
       </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-xl-4">
-      <div class="card h-100 shadow-sm ai-pack-card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            <span class="icon-shell" aria-hidden="true"><i class="fas fa-crown text-warning"></i></span>
-            <span class="pack-title">Elite AI</span>
-          </div>
-          <span class="pack-badge">Best Value</span>
-        </div>
-        <div class="card-body">
-          <div class="d-flex align-items-end mb-3">
-            <div class="display-6 fw-bold text-primary">$99</div>
-            <span class="text-muted ms-2">/mo</span>
-          </div>
-          <p class="text-muted small mb-0">Un trader IA premium avec automatisation continue et suivi détaillé orienté performance durable.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Moteur IA avec filtres de volatilité avancés</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Auto-rebalance intelligent intraday</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Signaux IA premium + scénarios adaptatifs</li>
-          <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Rapports complets et support VIP 24/7</li>
-        </ul>
-        <div class="card-body">
-          <a aria-label="Passer au pack Elite AI" class="btn btn-outline-primary w-100" href="contact.html">Passer à Elite AI</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <section class="card mt-4 how-it-works" aria-labelledby="howAiTradingWorks">
-    <div class="card-body">
-      <h3 class="h5 mb-3" id="howAiTradingWorks">How it works</h3>
-      <div class="row g-3">
-        <div class="col-12 col-md-4">
-          <article class="step-item">
-            <span class="step-index">1</span>
-            <h4 class="h6">Configurez votre profil</h4>
-            <p class="small text-muted mb-0">Définissez vos objectifs, niveaux de risque et actifs préférés en quelques clics.</p>
-          </article>
-        </div>
-        <div class="col-12 col-md-4">
-          <article class="step-item">
-            <span class="step-index">2</span>
-            <h4 class="h6">L'IA exécute automatiquement</h4>
-            <p class="small text-muted mb-0">Le moteur ajuste les positions via des signaux de marché et des règles de protection intégrées.</p>
-          </article>
-        </div>
-        <div class="col-12 col-md-4">
-          <article class="step-item">
-            <span class="step-index">3</span>
-            <h4 class="h6">Suivez et ajustez</h4>
-            <p class="small text-muted mb-0">Recevez des rapports clairs et adaptez votre stratégie pour soutenir votre potentiel de croissance.</p>
-          </article>
-        </div>
-      </div>
+      <div id="aiTradingTvHost" class="ai-trading-tv-host"></div>
     </div>
   </section>
+</div>
 </div>
 </div>
       </div>

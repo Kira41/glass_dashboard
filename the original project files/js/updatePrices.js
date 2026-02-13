@@ -336,6 +336,172 @@ function renderTradingViewWidget(theme) {
     chart.querySelector('.tradingview-widget-container').appendChild(script);
 }
 
+
+
+function mountTradingViewEmbed(hostElement, preset) {
+    if (!hostElement || !preset) return;
+    hostElement.innerHTML = '';
+
+    const container = document.createElement('div');
+    container.className = 'tradingview-widget-container';
+    container.style.height = '100%';
+    container.style.width = '100%';
+
+    const widget = document.createElement('div');
+    widget.className = 'tradingview-widget-container__widget';
+    widget.style.height = '100%';
+    widget.style.width = '100%';
+
+    const credit = document.createElement('div');
+    credit.className = 'tradingview-widget-copyright';
+    credit.innerHTML = `<a href="${preset.creditHref}" rel="noopener nofollow" target="_blank">${preset.creditText}</a><span> — by TradingView</span>`;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = preset.scriptSrc;
+    script.async = true;
+    script.text = JSON.stringify(preset.options, null, 2);
+
+    container.appendChild(widget);
+    container.appendChild(credit);
+    container.appendChild(script);
+    hostElement.appendChild(container);
+}
+
+function makeMarketQuotesPreset(title, groups, locale = 'ar', theme = 'dark') {
+    return {
+        title,
+        scriptSrc: 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js',
+        creditHref: 'https://www.tradingview.com/markets/',
+        creditText: 'Market summary',
+        options: {
+            title,
+            width: '100%',
+            height: '100%',
+            locale,
+            showSymbolLogo: true,
+            symbolsGroups: groups,
+            colorTheme: theme
+        }
+    };
+}
+
+function initAiTradingPanel() {
+    const host = document.getElementById('aiTradingTvHost');
+    const tabs = document.getElementById('aiTradingTabs');
+    const title = document.getElementById('aiTradingPageTitle');
+    if (!host || !tabs || !title) return;
+
+    const LOCALE = 'ar';
+    const THEME = 'dark';
+    const PRESETS = {
+        cryptoList: makeMarketQuotesPreset('Crypto', [
+            {
+                name: 'Majors',
+                symbols: [
+                    { name: 'COINBASE:BTCUSD', displayName: 'BTC/USD' },
+                    { name: 'COINBASE:ETHUSD', displayName: 'ETH/USD' },
+                    { name: 'BINANCE:BNBUSDT', displayName: 'BNB/USD' },
+                    { name: 'BINANCE:SOLUSDT', displayName: 'SOL/USD' }
+                ]
+            }
+        ], LOCALE, THEME),
+        stocksList: makeMarketQuotesPreset('Stocks', [
+            {
+                name: 'US Large / Tech',
+                symbols: [
+                    { name: 'NASDAQ:AAPL', displayName: 'Apple (AAPL)' },
+                    { name: 'NASDAQ:MSFT', displayName: 'Microsoft (MSFT)' },
+                    { name: 'NASDAQ:NVDA', displayName: 'Nvidia (NVDA)' },
+                    { name: 'NASDAQ:TSLA', displayName: 'Tesla (TSLA)' }
+                ]
+            }
+        ], LOCALE, THEME),
+        forexList: makeMarketQuotesPreset('Forex', [
+            {
+                name: 'Major',
+                symbols: [
+                    { name: 'FX_IDC:EURUSD', displayName: 'EUR/USD' },
+                    { name: 'FX_IDC:USDJPY', displayName: 'USD/JPY' },
+                    { name: 'FX_IDC:GBPUSD', displayName: 'GBP/USD' },
+                    { name: 'FX_IDC:USDCHF', displayName: 'USD/CHF' }
+                ]
+            }
+        ], LOCALE, THEME),
+        indicesList: makeMarketQuotesPreset('Indices', [
+            {
+                name: 'US',
+                symbols: [
+                    { name: 'FOREXCOM:SPXUSD', displayName: 'S&P 500' },
+                    { name: 'FOREXCOM:DJI', displayName: 'Dow Jones (DJIA)' },
+                    { name: 'FOREXCOM:NSXUSD', displayName: 'Nasdaq 100' }
+                ]
+            }
+        ], LOCALE, THEME),
+        commoditiesList: makeMarketQuotesPreset('Commodities', [
+            {
+                name: 'Metals',
+                symbols: [
+                    { name: 'CMCMARKETS:GOLD', displayName: 'Gold/USD' },
+                    { name: 'CMCMARKETS:SILVER', displayName: 'Silver/USD' },
+                    { name: 'CMCMARKETS:COPPER', displayName: 'Copper/USD' }
+                ]
+            }
+        ], LOCALE, THEME),
+        cryptoScreener: {
+            title: 'Screener — Crypto',
+            scriptSrc: 'https://s3.tradingview.com/external-embedding/embed-widget-screener.js',
+            creditHref: 'https://www.tradingview.com/crypto-coins-screener/',
+            creditText: 'Crypto Screener',
+            options: {
+                width: '100%',
+                height: '100%',
+                defaultColumn: 'overview',
+                defaultScreen: 'top_gainers',
+                showToolbar: true,
+                locale: LOCALE,
+                market: 'crypto',
+                colorTheme: THEME
+            }
+        },
+        forexScreener: {
+            title: 'Screener — Forex',
+            scriptSrc: 'https://s3.tradingview.com/external-embedding/embed-widget-screener.js',
+            creditHref: 'https://www.tradingview.com/markets/currencies/',
+            creditText: 'Forex Screener',
+            options: {
+                width: '100%',
+                height: '100%',
+                defaultColumn: 'overview',
+                defaultScreen: 'top_gainers',
+                showToolbar: true,
+                locale: LOCALE,
+                market: 'forex',
+                colorTheme: THEME
+            }
+        }
+    };
+
+    const loadPreset = (key) => {
+        const preset = PRESETS[key] || PRESETS.cryptoList;
+        title.textContent = preset.title;
+        mountTradingViewEmbed(host, preset);
+    };
+
+    tabs.addEventListener('click', (event) => {
+        const btn = event.target.closest('button[data-ai-preset]');
+        if (!btn) return;
+
+        tabs.querySelectorAll('button[data-ai-preset]').forEach((button) => {
+            button.classList.toggle('active', button === btn);
+        });
+
+        loadPreset(btn.dataset.aiPreset);
+    });
+
+    loadPreset('cryptoList');
+}
+
 function showBootstrapAlert(containerId, message, type = 'success') {
     const icons = {
         success: 'fa-check-circle',
@@ -2079,6 +2245,7 @@ function initializeUI() {
     });
 
     renderTradingViewWidget(selectedChartTheme);
+    initAiTradingPanel();
     fetchPrice(selectedPairVal);
     startPricePolling(fetchPrice);
     renderTradingHistory();
