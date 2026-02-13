@@ -2410,9 +2410,11 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const tabLinks = document.querySelectorAll('#sidebar .nav-link[data-section]');
-      const tabPanes = document.querySelectorAll('#dashboardContainer > .tab-content > .tab-pane');
-      const validSections = new Set(Array.from(tabLinks, (link) => link.dataset.section).filter(Boolean));
+      const sidebar = document.getElementById('sidebar');
+      const tabLinks = Array.from(document.querySelectorAll('#sidebar .nav-link[data-section]'));
+      const tabPanes = Array.from(document.querySelectorAll('#dashboardContainer > .tab-content > .tab-pane'));
+      const validSections = new Set(tabLinks.map((link) => link.dataset.section).filter(Boolean));
+      let currentRoute = null;
 
       const activateInnerTab = (triggerId) => {
         const trigger = document.getElementById(triggerId);
@@ -2422,64 +2424,81 @@
         bootstrap.Tab.getOrCreateInstance(trigger).show();
       };
 
-      const activateTab = (sectionId) => {
-        const targetPane = document.getElementById(sectionId);
-        if (!targetPane) {
+      const normalizeSection = (sectionId) => (validSections.has(sectionId) ? sectionId : null);
+
+      const getSectionFromHash = () => normalizeSection(window.location.hash.replace('#', '').trim());
+
+      const render = (sectionId) => {
+        const normalizedSection = normalizeSection(sectionId) || 'dashboard';
+        if (currentRoute === normalizedSection) {
           return;
         }
 
-        tabLinks.forEach(link => {
-          link.classList.toggle('active', link.dataset.section === sectionId);
+        currentRoute = normalizedSection;
+
+        tabLinks.forEach((link) => {
+          link.classList.toggle('active', link.dataset.section === currentRoute);
         });
 
-        tabPanes.forEach(pane => {
-          const isActive = pane.id === sectionId;
+        tabPanes.forEach((pane) => {
+          const isActive = pane.id === currentRoute;
           pane.classList.toggle('active', isActive);
           pane.classList.toggle('show', isActive);
         });
 
-        if (sectionId === 'deposit') {
+        if (currentRoute === 'deposit') {
           activateInnerTab('bank-tab');
         }
 
-        if (sectionId === 'withdraw') {
+        if (currentRoute === 'withdraw') {
           activateInnerTab('bank-withdraw-tab');
         }
       };
 
-      const getSectionFromHash = () => {
-        const sectionFromHash = window.location.hash.replace('#', '').trim();
-        return validSections.has(sectionFromHash) ? sectionFromHash : null;
+      const navigate = (nextRoute, { updateUrl = true, replace = false } = {}) => {
+        const normalizedSection = normalizeSection(nextRoute) || 'dashboard';
+
+        if (updateUrl && window.location.hash !== `#${normalizedSection}`) {
+          if (replace) {
+            window.history.replaceState({ route: normalizedSection }, '', `#${normalizedSection}`);
+          } else {
+            window.history.pushState({ route: normalizedSection }, '', `#${normalizedSection}`);
+          }
+        }
+
+        render(normalizedSection);
       };
 
-      const getInitialSection = () => {
-        return (
-          getSectionFromHash() ||
-          document.querySelector('#sidebar .nav-link.active[data-section]')?.dataset.section ||
-          'dashboard'
-        );
-      };
-
-      tabLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-          const sectionId = link.dataset.section;
-          if (!sectionId) {
+      if (sidebar) {
+        sidebar.addEventListener('click', (event) => {
+          const navLink = event.target.closest('.nav-link[data-section]');
+          if (!navLink || !sidebar.contains(navLink)) {
             return;
           }
+
+          const sectionId = navLink.dataset.section;
+          if (!normalizeSection(sectionId)) {
+            return;
+          }
+
           event.preventDefault();
-          activateTab(sectionId);
-          window.history.replaceState(null, '', `#${sectionId}`);
+          navigate(sectionId, { updateUrl: true, replace: false });
         });
-      });
+      }
 
-      window.addEventListener('hashchange', () => {
-        const sectionFromHash = getSectionFromHash();
-        if (sectionFromHash) {
-          activateTab(sectionFromHash);
-        }
-      });
+      const syncFromUrl = () => {
+        navigate(getSectionFromHash() || 'dashboard', { updateUrl: false });
+      };
 
-      activateTab(getInitialSection());
+      window.addEventListener('hashchange', syncFromUrl);
+      window.addEventListener('popstate', syncFromUrl);
+
+      const initialRoute =
+        getSectionFromHash() ||
+        normalizeSection(document.querySelector('#sidebar .nav-link.active[data-section]')?.dataset.section) ||
+        'dashboard';
+
+      navigate(initialRoute, { updateUrl: true, replace: true });
 
       const infoCompteBancaire = document.getElementById('infoCompteBancaire');
       if (infoCompteBancaire) {
