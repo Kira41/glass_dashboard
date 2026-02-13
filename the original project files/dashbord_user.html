@@ -572,7 +572,7 @@
         </div>
       </nav>
 
-      <div class="tab-content">
+      <div class="tab-content" id="mainTabsContent">
         <!-- Trading Tab -->
 <div class="tab-pane fade" id="trading">
 <h2 class="mb-4">Plateforme du trading</h2>
@@ -2411,7 +2411,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const tabLinks = document.querySelectorAll('#sidebar .nav-link[data-section]');
-      const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
+      const tabPanes = document.querySelectorAll('#mainTabsContent > .tab-pane');
 
       const activateInnerTab = (triggerId) => {
         const trigger = document.getElementById(triggerId);
